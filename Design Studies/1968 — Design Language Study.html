@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Language Study — 1968</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #08121A;
+  --cream:     #FAF1E5;
+  --cream-mid: #EFE2CC;
+  --gold:      #C4973A;
+  --muted:     #6B5F53;
+  --rule:      #D9C9B0;
+
+  /* 1968 palette extracted */
+  --c68-amber:  #C8823A;
+  --c68-buff:   #E8C98A;
+  --c68-green:  #3E7A38;
+  --c68-gold:   #D4A820;
+  --c68-red:    #C03820;
+  --c68-cream:  #F2E4C4;
+  --c68-black:  #1A1410;
+}
+
+body {
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ── DOCUMENT HEADER ───────────────────────────────────── */
+.doc-header {
+  padding: 56px 64px 40px;
+  border-bottom: 1px solid var(--navy);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 40px;
+}
+.doc-meta { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.doc-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1.05; color: var(--navy); }
+.doc-title em { font-style: italic; color: var(--gold); }
+.doc-subtitle { font-size: 10px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+.doc-classification {
+  text-align: right;
+  font-size: 8px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--rule); padding: 12px 16px; line-height: 2;
+}
+
+/* ── LAYOUT ────────────────────────────────────────────── */
+.body-wrap { padding: 56px 64px; }
+
+section { margin-bottom: 64px; }
+
+.section-label {
+  font-size: 8px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.section-rule { border: none; border-top: 0.5px solid var(--navy); margin-bottom: 28px; }
+.section-heading {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
+  color: var(--navy); margin-bottom: 20px; line-height: 1.1;
+}
+
+/* ── OPENING STATEMENT ─────────────────────────────────── */
+.opening {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 40px 0;
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 64px;
+}
+.opening-statement {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; font-style: italic;
+  line-height: 1.5; color: var(--navy);
+}
+.opening-notes { font-size: 11px; font-weight: 300; line-height: 1.85; color: var(--muted); }
+.opening-notes strong { font-weight: 600; color: var(--navy); }
+
+/* ── COLOR PALETTE ─────────────────────────────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.swatch { }
+.swatch-block {
+  width: 100%; aspect-ratio: 1;
+  margin-bottom: 10px;
+}
+.swatch-name { font-size: 8px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 2px; }
+.swatch-hex  { font-size: 8px; font-weight: 300; color: var(--muted); margin-bottom: 4px; }
+.swatch-desc { font-size: 8px; font-weight: 300; line-height: 1.5; color: var(--muted); }
+
+/* ── TEXTURE STUDY ─────────────────────────────────────── */
+.texture-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.texture-panel { }
+.texture-swatch {
+  width: 100%; height: 200px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.texture-label { font-size: 8px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.texture-desc { font-size: 10.5px; font-weight: 300; line-height: 1.8; color: var(--navy); }
+
+/* Texture: 1968 border simulation */
+.tex-1968 {
+  background-color: var(--c68-amber);
+  background-image:
+    repeating-linear-gradient(
+      7deg,
+      transparent,
+      transparent 3px,
+      rgba(180,100,20,0.18) 3px,
+      rgba(180,100,20,0.18) 5px
+    ),
+    repeating-linear-gradient(
+      97deg,
+      transparent,
+      transparent 6px,
+      rgba(120,60,10,0.12) 6px,
+      rgba(120,60,10,0.12) 8px
+    ),
+    repeating-linear-gradient(
+      52deg,
+      transparent,
+      transparent 9px,
+      rgba(200,140,40,0.10) 9px,
+      rgba(200,140,40,0.10) 11px
+    );
+}
+
+/* Texture: macro enlargement */
+.tex-macro {
+  background-color: #D4934A;
+  background-image:
+    radial-gradient(ellipse 4px 2px at 8px 6px, rgba(100,50,10,0.35) 0%, transparent 100%),
+    radial-gradient(ellipse 5px 2px at 22px 14px, rgba(80,40,8,0.28) 0%, transparent 100%),
+    radial-gradient(ellipse 3px 2px at 36px 4px, rgba(120,60,15,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 6px 2px at 48px 18px, rgba(90,45,10,0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 4px 1.5px at 62px 8px, rgba(110,55,12,0.32) 0%, transparent 100%),
+    radial-gradient(ellipse 5px 2px at 14px 24px, rgba(100,50,10,0.28) 0%, transparent 100%),
+    radial-gradient(ellipse 3px 2px at 40px 30px, rgba(80,40,8,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 6px 2px at 58px 28px, rgba(120,60,15,0.22) 0%, transparent 100%);
+  background-size: 70px 40px;
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* Texture: linen material reference */
+.tex-linen {
+  background-color: #E8D9B8;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,130,80,0.15) 2px, rgba(160,130,80,0.15) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(140,110,60,0.12) 2px, rgba(140,110,60,0.12) 3px);
+}
+
+/* Texture: canvas */
+.tex-canvas {
+  background-color: #D4C4A0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(100,80,40,0.1) 4px, rgba(100,80,40,0.1) 5px),
+    repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(80,60,30,0.08) 4px, rgba(80,60,30,0.08) 5px),
+    repeating-linear-gradient(45deg, transparent, transparent 7px, rgba(120,90,50,0.05) 7px, rgba(120,90,50,0.05) 8px);
+}
+
+/* ── TYPOGRAPHY STUDY ──────────────────────────────────── */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.type-panel { }
+.type-observation {
+  border-left: 2px solid var(--gold);
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+.type-observation-label { font-size: 8px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.type-observation-text  { font-size: 10.5px; font-weight: 300; line-height: 1.75; color: var(--navy); }
+
+.type-demo-block {
+  background: var(--c68-cream);
+  border: 0.5px solid var(--rule);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.type-demo-sm { font-size: 9px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.type-demo-lg { font-size: 36px; font-weight: 800; letter-spacing: 0.02em; line-height: 1; color: var(--c68-amber); font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+.type-demo-md { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--c68-black); margin-top: 2px; }
+
+/* ── SHAPE STUDY ───────────────────────────────────────── */
+.shape-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items: start; }
+.shape-item { text-align: center; }
+.shape-demo {
+  margin: 0 auto 12px;
+  background: transparent;
+  border: 2px solid var(--navy);
+  position: relative;
+}
+.shape-demo.rounded-rect { width: 80px; height: 100px; border-radius: 10px; }
+.shape-demo.circle-callout {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--c68-green); border-color: var(--c68-black); border-width: 3px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.shape-demo.circle-callout span.pos { font-size: 7px; font-weight: 600; color: white; letter-spacing: 0.1em; text-transform: uppercase; }
+.shape-demo.circle-callout span.team { font-size: 11px; font-weight: 800; color: var(--c68-gold); letter-spacing: 0.05em; text-transform: uppercase; }
+.shape-demo.border-frame { width: 80px; height: 100px; border-radius: 4px; border-width: 4px; }
+.shape-demo.name-banner { width: 90px; height: 36px; border-radius: 2px; background: var(--c68-cream); }
+.shape-label { font-size: 8px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); margin-bottom: 4px; }
+.shape-note  { font-size: 9px; font-weight: 300; line-height: 1.6; color: var(--muted); }
+
+/* ── MATERIALS ─────────────────────────────────────────── */
+.material-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.material-item {
+  padding: 24px 28px;
+  border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+}
+.material-item:nth-child(3n) { border-right: none; }
+.material-item:nth-last-child(-n+3) { border-bottom: none; }
+.material-swatch-bar {
+  height: 4px; width: 40px; margin-bottom: 14px;
+  background: var(--gold);
+}
+.material-name { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 6px; }
+.material-desc { font-size: 9.5px; font-weight: 300; line-height: 1.75; color: var(--muted); }
+.material-feel { font-size: 8px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 8px; }
+
+/* ── EMOTIONAL KEYWORDS ────────────────────────────────── */
+.keywords-wrap {
+  background: var(--navy);
+  padding: 56px 64px;
+  margin: 0 -64px;
+}
+.keywords-intro {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 32px;
+}
+.keywords-cloud {
+  display: flex; flex-wrap: wrap; gap: 0; align-items: baseline;
+}
+.kw {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--cream); line-height: 1.2;
+  padding: 4px 12px;
+}
+.kw.xl  { font-size: 52px; font-weight: 300; font-style: italic; }
+.kw.lg  { font-size: 36px; font-weight: 300; }
+.kw.md  { font-size: 24px; font-weight: 300; font-style: italic; }
+.kw.sm  { font-size: 16px; font-weight: 300; color: var(--gold); }
+.kw.xs  { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,241,229,0.45); }
+
+/* ── FASHION TRANSLATION ───────────────────────────────── */
+.translation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+.translation-item { }
+.trans-number { font-size: 40px; font-weight: 200; color: var(--rule); line-height: 1; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+.trans-title  { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; border-bottom: 0.5px solid var(--rule); padding-bottom: 8px; }
+.trans-desc   { font-size: 10px; font-weight: 300; line-height: 1.8; color: var(--muted); }
+.trans-note   { font-size: 8.5px; font-style: italic; color: var(--gold); margin-top: 8px; }
+
+/* ── STUDIO NOTES ──────────────────────────────────────── */
+.studio-notes {
+  border: 0.5px solid var(--rule);
+  padding: 32px;
+  background: var(--cream-mid);
+  margin-top: 56px;
+}
+.notes-header { font-size: 8px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.notes-text   { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 400; line-height: 1.85; color: var(--navy); }
+.notes-text em { font-style: italic; color: var(--gold); }
+
+/* ── DOC FOOTER ────────────────────────────────────────── */
+.doc-footer {
+  padding: 24px 64px;
+  border-top: 1px solid var(--navy);
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 0;
+}
+.footer-left  { font-size: 8px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.footer-right { font-size: 8px; font-weight: 300; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- DOCUMENT HEADER -->
+<header class="doc-header">
+  <div>
+    <div class="doc-meta">Provenance — Design Research  ·  Study No. 001  ·  Design Library</div>
+    <h1 class="doc-title">1968<br><em>Design Language</em><br>Study</h1>
+    <p class="doc-subtitle">Visual precedent analysis — Topps baseball card border design</p>
+  </div>
+  <div class="doc-classification">
+    CLASSIFICATION<br>
+    Design Research<br>
+    <br>
+    PURPOSE<br>
+    Precedent Study<br>
+    <br>
+    SUBJECT<br>
+    1968 Card Border<br>
+    <br>
+    NOT FOR PRODUCTION
+  </div>
+</header>
+
+<div class="body-wrap">
+
+  <!-- OPENING STATEMENT -->
+  <div class="opening">
+    <div class="opening-statement">
+      "What makes this design visually compelling is not what it depicts — it is how it holds together. The border does not decorate. It frames. The texture does not pattern. It breathes."
+    </div>
+    <div class="opening-notes">
+      <strong>Purpose of this study.</strong><br>
+      This document is not a product concept. It is a precedent study — a structured analysis of why one specific design artifact from 1968 continues to feel timeless nearly six decades later.<br><br>
+      The objective is to isolate the design principles at work and identify how those principles — divorced from their original context — might inform premium apparel and goods in the future.<br><br>
+      Nothing in this document should be interpreted as a product direction. This is raw material for a design library.
+    </div>
+  </div>
+
+  <!-- SECTION 1: COLOR -->
+  <section>
+    <div class="section-label">01  /  Color Study</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">The Palette</h2>
+
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#C8823A;"></div>
+        <div class="swatch-name">Border Amber</div>
+        <div class="swatch-hex">#C8823A</div>
+        <div class="swatch-desc">Dominant. Warm, earthen orange. Not aggressive — its warmth comes from brown undertones, not red ones.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#E8C98A;"></div>
+        <div class="swatch-name">Buff Ground</div>
+        <div class="swatch-hex">#E8C98A</div>
+        <div class="swatch-desc">The base tone visible through the texture. Gives the border depth and warmth without saturation.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F2E4C4;"></div>
+        <div class="swatch-name">Card Stock</div>
+        <div class="swatch-hex">#F2E4C4</div>
+        <div class="swatch-desc">The card's base material, aged. Not white. Warm cream — the color of good paper after years in a drawer.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#3E7A38;"></div>
+        <div class="swatch-name">Field Green</div>
+        <div class="swatch-hex">#3E7A38</div>
+        <div class="swatch-desc">The single chromatic accent. Used only in the circular callout. Its restraint makes it feel important.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#D4A820;"></div>
+        <div class="swatch-name">Accent Gold</div>
+        <div class="swatch-hex">#D4A820</div>
+        <div class="swatch-desc">Secondary accent inside the callout. Warm, not bright. More harvest than glitter.</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1A1410;"></div>
+        <div class="swatch-name">Warm Black</div>
+        <div class="swatch-hex">#1A1410</div>
+        <div class="swatch-desc">Not true black. The photo frame and text carry a slight warm brown cast. Feels printed, not digital.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px; padding:20px 24px; border-left:3px solid var(--gold); background:rgba(196,151,58,0.06);">
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Color Observation</div>
+      <div style="font-size:11px;font-weight:300;line-height:1.85;color:var(--navy);">
+        The palette is entirely warm. There is no cool tone anywhere in the card. This is not accidental — it creates a unified thermal register that feels cohesive and resolved. The amber border does not fight the cream card stock; it continues it at higher intensity. The green callout works precisely because it is the only departure — it earns its visual weight through isolation. The lesson: a restrained palette with one deliberate exception is more powerful than variety.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: TEXTURE -->
+  <section>
+    <div class="section-label">02  /  Texture Study</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">The Border Texture</h2>
+
+    <div class="texture-grid">
+      <div class="texture-panel">
+        <div class="texture-label">Full Border Simulation</div>
+        <div class="texture-swatch tex-1968"></div>
+        <div class="texture-desc">
+          At normal scale, the texture reads as a warm, dense, organic field. It is not uniform — there is visible variation in ink density, mark spacing, and angle. This is what makes it feel <em>printed</em> rather than designed on a screen.
+        </div>
+      </div>
+      <div class="texture-panel">
+        <div class="texture-label">Material Reference — Linen</div>
+        <div class="texture-swatch tex-linen"></div>
+        <div class="texture-desc">
+          The texture's closest material analog is washed linen — specifically the warp-and-weft structure visible in fine linen at close range. The border shares linen's characteristic: regularity that reads as texture, not pattern.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;">
+      <div>
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Character of the Mark</div>
+        <div style="font-size:10.5px;font-weight:300;line-height:1.8;color:var(--navy);">
+          Each individual element in the texture is a small, slightly irregular rectangle — not a perfect geometric shape. The marks appear as though impressed by a physical tool, leaving variations in pressure and angle. No two marks are identical. The overall effect resembles the surface of a handmade paper, a woven textile, or the grain of fine cardstock seen under magnification.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Density and Spacing</div>
+        <div style="font-size:10.5px;font-weight:300;line-height:1.8;color:var(--navy);">
+          The marks are close but not touching. There are small gaps between them that reveal the lighter buff ground beneath. This relationship — dense mark over warm ground — creates the color depth. The texture is not a solid color; it is a layered optical effect where two tones interact to produce a third. This is why it reads as rich rather than flat.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Print Imperfection as Asset</div>
+        <div style="font-size:10.5px;font-weight:300;line-height:1.8;color:var(--navy);">
+          The slight variation in ink saturation across the border — heavier in some areas, lighter in others — is a byproduct of the printing process. Rather than diminishing the card, it gives the border life. The imperfection is the authenticity. This is a principle worth carrying forward: deliberate textural variation, which implies process and material, reads as quality rather than error.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TYPOGRAPHY -->
+  <section>
+    <div class="section-label">03  /  Typography Study</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">Typographic Principles</h2>
+
+    <div class="type-grid">
+      <div class="type-panel">
+        <div class="type-demo-block">
+          <div class="type-demo-sm">San Francisco Giants  ·  Outfield</div>
+          <div class="type-demo-lg">MAYS</div>
+          <div class="type-demo-md">Willie</div>
+        </div>
+
+        <div class="type-observation">
+          <div class="type-observation-label">Hierarchy</div>
+          <div class="type-observation-text">Two names, two sizes, one color contrast. The surname dominates in amber-red. The first name is present but subordinate in near-black. The hierarchy is established through scale and color simultaneously — not through weight alone.</div>
+        </div>
+        <div class="type-observation">
+          <div class="type-observation-label">Weight</div>
+          <div class="type-observation-text">Ultra-bold condensed for the featured name. This creates extreme contrast with the open, airy body of the photo. The type is not competing with the image — it is grounding it. Bold at the base, open above.</div>
+        </div>
+      </div>
+
+      <div class="type-panel">
+        <div class="type-observation">
+          <div class="type-observation-label">Simplicity</div>
+          <div class="type-observation-text">There are three typographic elements on the front of the card: the team/position callout, the first name, and the last name. Nothing more. The restraint is not poverty — it is confidence. The design does not explain itself.</div>
+        </div>
+        <div class="type-observation">
+          <div class="type-observation-label">All Caps</div>
+          <div class="type-observation-text">Every word is uppercase. This decision creates typographic uniformity that allows the color and scale variation to carry the hierarchy, rather than case mixing. It also reads as formal — a statement, not a label.</div>
+        </div>
+        <div class="type-observation">
+          <div class="type-observation-label">Spacing</div>
+          <div class="type-observation-text">Tight letter-spacing on the main name. Wider tracking on supporting text (team, position). This is the opposite of what most contemporary designers would do — but it works because it distinguishes primary from secondary without size alone.</div>
+        </div>
+        <div class="type-observation">
+          <div class="type-observation-label">Principle</div>
+          <div class="type-observation-text">The typography succeeds through <strong>reduction</strong>. Every element that could have been added — taglines, stats, decorative type — was left off the face. The readability comes not from clever arrangement but from the courage to remove.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SHAPE -->
+  <section>
+    <div class="section-label">04  /  Shape &amp; Structure</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">Geometry of the Card</h2>
+
+    <div class="shape-grid">
+      <div class="shape-item">
+        <div class="shape-demo rounded-rect" style="margin:0 auto 16px;"></div>
+        <div class="shape-label">Photo Window</div>
+        <div class="shape-note">Generous corner radius on the photo frame. The rounded rectangle softens the image without romanticizing it. It feels like a viewfinder — technical but humanized.</div>
+      </div>
+      <div class="shape-item">
+        <div class="shape-demo circle-callout" style="margin:0 auto 16px;">
+          <span class="pos">Outfield</span>
+          <span class="team">Giants</span>
+        </div>
+        <div class="shape-label">Team Callout</div>
+        <div class="shape-note">The circular callout in the lower right functions as a seal or badge. It interrupts the photo frame, which gives it authority. The oval feels official — closer to a stamp than a label.</div>
+      </div>
+      <div class="shape-item">
+        <div class="shape-demo border-frame" style="margin:0 auto 16px;"></div>
+        <div class="shape-label">Border Frame</div>
+        <div class="shape-note">The textured border functions as a mat — the same principle as a museum frame. It creates breathing room between the photo and the edge of the card. The photo feels curated, not cropped.</div>
+      </div>
+      <div class="shape-item">
+        <div class="shape-demo name-banner" style="margin:0 auto 16px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:9px;font-weight:700;letter-spacing:0.05em;color:var(--c68-black);">WILLIE</span>
+        </div>
+        <div class="shape-label">Name Area</div>
+        <div class="shape-note">The name sits below the photo on the textured border — not inside the image. This separation keeps the type readable against any photo content and maintains a clean visual register.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;padding:20px 24px;border-left:3px solid var(--gold);background:rgba(196,151,58,0.06);">
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Structural Observation</div>
+      <div style="font-size:11px;font-weight:300;line-height:1.85;color:var(--navy);">
+        The card's structure is essentially a framed portrait — the same visual grammar as a painted miniature or a locket photograph. The textured border performs the function of a frame molding. The photo is the subject. The callout is the provenance label. The name is the caption. This is not sports design; it is portraiture design applied to a mass-produced format. That is why it continues to feel dignified.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MATERIALS -->
+  <section>
+    <div class="section-label">05  /  Material Inspirations</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">What This Card Feels Like</h2>
+
+    <div class="material-grid">
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#C8823A;"></div>
+        <div class="material-name">Archival Kraft</div>
+        <div class="material-desc">Unbleached kraft paper — the same warm buff-amber that forms the card's base. Heavy weight, slightly rough to the touch. Has the same warmth and grain.</div>
+        <div class="material-feel">Warm  ·  Honest  ·  Archival</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#E8D9B8;"></div>
+        <div class="material-name">Washed Linen</div>
+        <div class="material-desc">The border texture translates directly into the warp-and-weft structure of fine washed linen. The same visual rhythm: dense, slightly irregular, warm, organic.</div>
+        <div class="material-feel">Tactile  ·  Aged  ·  Refined</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#D4C4A0;"></div>
+        <div class="material-name">Cotton Canvas</div>
+        <div class="material-desc">Midweight cotton canvas with visible grain. The texture study directly evokes canvas — specifically unprimed artist's canvas before it has been painted.</div>
+        <div class="material-feel">Structured  ·  Durable  ·  Organic</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#F5F0E8;"></div>
+        <div class="material-name">Museum Cardstock</div>
+        <div class="material-desc">Acid-free museum-grade cardstock — the material reference behind the card's cream back. The weight and tooth create credibility through material quality alone.</div>
+        <div class="material-feel">Archival  ·  Institutional  ·  Permanent</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#C4973A;"></div>
+        <div class="material-name">Brass Hardware</div>
+        <div class="material-desc">The amber palette maps directly to aged brass — buttons, rivets, D-rings, buckles. Not polished gold. Warm, slightly oxidized, the color of hardware that has been handled.</div>
+        <div class="material-feel">Earned  ·  Warm  ·  Functional</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#3E7A38;"></div>
+        <div class="material-name">Woven Label — Field</div>
+        <div class="material-desc">The green callout's color and format suggests a woven label — the small rectangular or oval badge sewn into quality goods. Its restraint and precision translate directly.</div>
+        <div class="material-feel">Official  ·  Provenance  ·  Authenticated</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#4A3828;"></div>
+        <div class="material-name">Horn Button</div>
+        <div class="material-desc">The warm dark tones in the card — the near-black photo frame, the type — read as dark horn. Not black plastic. The warmth is critical: it suggests natural material and age.</div>
+        <div class="material-feel">Natural  ·  Quiet  ·  Premium</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#E8E0D0;"></div>
+        <div class="material-name">Premium Piqué</div>
+        <div class="material-desc">The raised texture of piqué knit — traditional polo fabric — shares structural kinship with the card's border texture: a regular-irregular surface that creates depth through repetition.</div>
+        <div class="material-feel">Structured  ·  Classic  ·  Technical</div>
+      </div>
+      <div class="material-item">
+        <div class="material-swatch-bar" style="background:#B8A888;"></div>
+        <div class="material-name">Cotton Stationery</div>
+        <div class="material-desc">100% cotton writing paper — correspondence weight. The surface has the same organic character as the card stock. Used for packaging inserts, hang tags, tissue wrapping.</div>
+        <div class="material-feel">Considered  ·  Sincere  ·  Handmade</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end body-wrap -->
+
+<!-- EMOTIONAL KEYWORDS -->
+<div class="keywords-wrap">
+  <div style="padding:0 0 32px;">
+    <div class="keywords-intro">06  /  Emotional Register  ·  How this design feels</div>
+  </div>
+  <div class="keywords-cloud">
+    <span class="kw xl">Timeless</span>
+    <span class="kw sm">·</span>
+    <span class="kw lg">Authentic</span>
+    <span class="kw xs">collected</span>
+    <span class="kw md">Warm</span>
+    <span class="kw sm">Crafted</span>
+    <span class="kw xs">deliberate</span>
+    <span class="kw xl" style="font-size:40px;">Collectible</span>
+    <span class="kw xs">earned</span>
+    <span class="kw lg" style="font-style:italic;">Organic</span>
+    <span class="kw sm">·</span>
+    <span class="kw md">Balanced</span>
+    <span class="kw xs">patient</span>
+    <span class="kw xl" style="font-size:34px;">Restrained</span>
+    <span class="kw xs">printed</span>
+    <span class="kw sm">Premium</span>
+    <span class="kw lg" style="font-size:28px;">Historic</span>
+    <span class="kw xs">tactile</span>
+    <span class="kw md" style="font-style:normal;">Honest</span>
+    <span class="kw xs">resolved</span>
+    <span class="kw sm">Dignified</span>
+    <span class="kw xs">archive</span>
+    <span class="kw xl" style="font-size:28px;font-style:italic;">Considered</span>
+  </div>
+</div>
+
+<div class="body-wrap" style="padding-top:64px;">
+
+  <!-- SECTION 7: FASHION TRANSLATION -->
+  <section>
+    <div class="section-label">07  /  Fashion Translation</div>
+    <hr class="section-rule">
+    <h2 class="section-heading">Design Opportunities — No Products Yet</h2>
+    <p style="font-size:10.5px;font-weight:300;line-height:1.8;color:var(--muted);margin-bottom:36px;max-width:600px;">
+      The following are identified opportunities only. Nothing here is a garment design, colorway, or product specification. These are notes about where the design principles of this card could surface in apparel and goods.
+    </p>
+
+    <div class="translation-grid">
+      <div class="translation-item">
+        <div class="trans-number">01</div>
+        <div class="trans-title">Collar & Placket Texture</div>
+        <div class="trans-desc">The border texture suggests a surface treatment on collar tape, placket lining, or neck binding. A woven or printed interior tape in amber-buff with a repeated irregular mark could reference the card without depicting it.</div>
+        <div class="trans-note">→ Interior detail. Hidden quality signal.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">02</div>
+        <div class="trans-title">Woven Label System</div>
+        <div class="trans-desc">The green callout badge is, in essence, a woven label — an oval or rounded rectangle with high-contrast type on a colored field. A label system derived from this format could identify garment classification, fabric weight, or provenance detail.</div>
+        <div class="trans-note">→ Interior label, hang tag, authenticity badge.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">03</div>
+        <div class="trans-title">Piqué Knit Reference</div>
+        <div class="trans-desc">The border texture's structural relationship to piqué knit is direct. A specific piqué gauge — 18 or 24 — with a slightly irregular mechanical texture could embody the card's visual weight without any literal reference.</div>
+        <div class="trans-note">→ Primary fabric selection signal.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">04</div>
+        <div class="trans-title">Amber Hardware Palette</div>
+        <div class="trans-desc">The card's dominant amber tone maps to aged brass — horn, antique brass, or burnished gold hardware. Buttons, rivets, zipper pulls, and strap hardware in this finish carry the card's warmth into physical material.</div>
+        <div class="trans-note">→ Hardware specification. Unifies across SKUs.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">05</div>
+        <div class="trans-title">Typographic Proportion</div>
+        <div class="trans-desc">The bold condensed surname over smaller, lighter first name creates a proportion that could inform embroidery hierarchy — a large bold brand mark with smaller supporting text. The weight contrast is the lesson, not the typeface.</div>
+        <div class="trans-note">→ Embroidery layout principle.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">06</div>
+        <div class="trans-title">Packaging & Tissue</div>
+        <div class="trans-desc">The card's cream-and-amber color register is directly applicable to packaging — tissue paper in buff, kraft wrapping, printed interior boxes. The texture could appear on packaging surface as a pattern derived from the border's visual rhythm.</div>
+        <div class="trans-note">→ Unboxing experience. Retail presentation.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">07</div>
+        <div class="trans-title">Piping & Trim Color</div>
+        <div class="trans-desc">The amber border as piping on a cream or navy garment. Not a wide stripe — a narrow accent at the collar, cuff, or hem. The border becomes a trim reference: the same role, the same proportional weight.</div>
+        <div class="trans-note">→ Collar trim, cuff piping, hem accent.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">08</div>
+        <div class="trans-title">Rounded Rectangle Shape Language</div>
+        <div class="trans-desc">The card's photo frame — a generous-radius rounded rectangle — as a patch shape, pocket outline, or badge format. This is a subtle shape vocabulary that could unify graphic elements across a collection without any sports reference.</div>
+        <div class="trans-note">→ Patch format, printed label shape, pocket silhouette.</div>
+      </div>
+      <div class="translation-item">
+        <div class="trans-number">09</div>
+        <div class="trans-title">Linen & Canvas Material Palette</div>
+        <div class="trans-desc">The texture study reveals linen and canvas as the natural material analogs for this card. A garment built from washed linen or cotton-linen blend carries the same visual register — warm, organic, structured — without any graphic reference required.</div>
+        <div class="trans-note">→ Seasonal fabric direction. Material-as-reference.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO NOTES -->
+  <div class="studio-notes">
+    <div class="notes-header">Studio Notes  ·  Observations for the Design Library</div>
+    <div class="notes-text">
+      What is most remarkable about the 1968 card border design is that its most distinctive quality — the <em>texture</em> — was almost certainly not designed. It was printed. The pattern is a consequence of the printing process applied to the card stock, not a deliberate graphic decision made by a designer. The imperfection is authentic because it is not performed imperfection. It happened.<br><br>
+      This is a useful design principle for Provenance: the most compelling visual qualities are often those that emerge from <em>process and material</em> rather than from intention. A premium piqué polo is textured because of how it is knit, not because someone drew a texture on it. Brass hardware develops its warmth because of its alloy and age, not because of a finish applied afterward.<br><br>
+      The 1968 card succeeds because it trusted its materials. The design library we are building should follow the same logic: <em>let the material do the work</em> whenever possible. Design the conditions for quality. Don't illustrate it.
+    </div>
+  </div>
+
+</div><!-- end body-wrap -->
+
+<!-- DOCUMENT FOOTER -->
+<footer class="doc-footer">
+  <div class="footer-left">Provenance  ·  Design Research Library  ·  Study No. 001  ·  1968 Design Language</div>
+  <div class="footer-right">This document contains design research only. No copyrighted material is reproduced or referenced directly.</div>
+</footer>
+
+</body>
+</html>

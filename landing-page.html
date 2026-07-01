@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Provenance — Every Piece Has a Story Worth Keeping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Variables ─────────────────────────────────────────── */
+    :root {
+      --navy:     #08121A;
+      --cream:    #FAF1E5;
+      --gold:     #C4973A;
+      --offwhite: #F4E3D7;
+      --gap: clamp(3rem, 6vw, 5rem);
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(8, 18, 26, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .nav-mark { height: 30px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 300;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.25s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: 4px;
+      opacity: 1;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem clamp(2rem, 8vw, 6rem) 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(196,151,58,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-wordmark {
+      width: min(560px, 82vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.15s forwards;
+    }
+    .hero-eyebrow {
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero-headline {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.55s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-body {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--cream);
+      opacity: 0;
+      max-width: 460px;
+      margin: 0 auto 2.75rem;
+      animation: fadeUp 0.9s ease 0.7s forwards;
+    }
+    .hero-body span { opacity: 0.65; }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.85s forwards;
+    }
+    /* keep old .hero-right rule harmless */
+    .hero-right { display: none; }
+
+    /* ─── Buttons ────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: var(--cream);
+      border: 1px solid var(--cream);
+      color: var(--navy);
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--cream);
+    }
+    .btn-primary:focus-visible {
+      outline: 1px solid var(--cream);
+      outline-offset: 3px;
+    }
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: transparent;
+      border: 1px solid rgba(250,241,229,0.3);
+      color: var(--cream);
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-ghost:hover {
+      background: var(--cream);
+      color: var(--navy);
+      border-color: var(--cream);
+    }
+    .btn-ghost:focus-visible {
+      outline: 1px solid var(--cream);
+      outline-offset: 3px;
+    }
+
+    /* ─── Section shared ─────────────────────────────────────── */
+    section { padding: var(--gap) clamp(1.5rem, 8vw, 6rem); }
+
+    .section-label {
+      font-weight: 400;
+      font-size: 0.63rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .section-headline {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.95;
+      opacity: 0.7;
+      max-width: 50ch;
+    }
+
+    /* ─── Editorial illustration ────────────────────────────── */
+    .editorial-figure {
+      margin: 0;
+      overflow: hidden;
+      /* Crop bottom ~22% of image to hide the baked-in logo/caption */
+      max-height: 520px;
+    }
+    .editorial-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      height: 520px;
+    }
+    .editorial-copy {
+      padding: 0;
+    }
+    .editorial-tagline {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+    .editorial-body {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--navy);
+      opacity: 0.65;
+      margin-bottom: 1.5rem;
+    }
+    .editorial-sub {
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.35;
+    }
+    @media (max-width: 800px) {
+      .editorial-figure { max-height: 380px; }
+      .editorial-img { height: 380px; }
+    }
+
+    /* ─── Story section (cream) ──────────────────────────────── */
+    #story {
+      background: var(--cream);
+      color: var(--navy);
+    }
+    .story-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-right {
+      padding-top: 0;
+    }
+    .story-right p {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--navy);
+      opacity: 0.7;
+      margin-bottom: 1.25rem;
+      max-width: 42ch;
+    }
+    .story-right p:last-child { margin-bottom: 0; }
+    .story-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    /* ─── Craft / Pillars (navy) ─────────────────────────────── */
+    #craft {
+      background: var(--navy);
+      color: var(--cream);
+    }
+    .craft-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .craft-left { padding-top: 0.25rem; }
+
+    .pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: rgba(250,241,229,0.08);
+    }
+    .pillar {
+      background: var(--navy);
+      padding: 1.25rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .pillar:hover::after { transform: scaleX(1); }
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .pillar-icon {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .pillar-title {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      color: var(--cream);
+    }
+    .pillar-text {
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--cream);
+      opacity: 0.65;
+    }
+
+    /* ─── The Card (offwhite) ────────────────────────────────── */
+    #card {
+      background: var(--offwhite);
+      color: var(--navy);
+    }
+    .card-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .card-content .section-label { color: var(--navy); opacity: 0.45; }
+    .card-content .section-headline { color: var(--navy); }
+    .card-content .section-body { color: var(--navy); margin-bottom: 2rem; }
+
+    .card-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Mocked authentication card */
+    .auth-card-mock {
+      width: min(300px, 90%);
+      aspect-ratio: 2.5 / 3.5;
+      background: var(--navy);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 32px 80px rgba(8,18,26,0.25), 0 2px 8px rgba(8,18,26,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-card-mock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(196,151,58,0.3);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .auth-card-mock::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .auth-card-pmark {
+      width: 70px;
+      margin-bottom: 1.5rem;
+    }
+    .auth-card-title {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      opacity: 0.55;
+    }
+    .auth-card-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 1.5rem;
+    }
+    .auth-card-meta {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .auth-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .auth-card-key {
+      font-weight: 300;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.4;
+    }
+    .auth-card-val {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.85rem;
+      color: var(--cream);
+      opacity: 0.8;
+    }
+
+    .card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .card-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cd-bar {
+      width: 18px;
+      height: 1px;
+      background: var(--gold);
+      margin-top: 0.6em;
+      flex-shrink: 0;
+    }
+    .cd-text {
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--navy);
+      opacity: 0.6;
+    }
+
+    /* ─── Binder / Account ──────────────────────────────────── */
+    #binder {
+      background: var(--navy);
+      color: var(--cream);
+    }
+    .binder-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .binder-content .section-body {
+      margin-bottom: 2.5rem;
+    }
+    .binder-rewards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .binder-reward {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .br-diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      margin-top: 0.45em;
+    }
+    .br-text {
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      opacity: 0.7;
+    }
+    .br-text strong {
+      font-weight: 600;
+      opacity: 1;
+      color: var(--cream);
+    }
+
+    /* Binder page visual */
+    .binder-visual {
+      display: flex;
+      justify-content: center;
+    }
+    .binder-page {
+      background: rgba(250,241,229,0.04);
+      border: 1px solid rgba(250,241,229,0.12);
+      border-radius: 3px;
+      padding: 1.4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+    }
+    .binder-page::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 10%;
+      bottom: 10%;
+      width: 12px;
+      background: rgba(250,241,229,0.07);
+      border-radius: 3px 0 0 3px;
+      border-left: 1px solid rgba(250,241,229,0.12);
+      border-top: 1px solid rgba(250,241,229,0.06);
+      border-bottom: 1px solid rgba(250,241,229,0.06);
+    }
+    .pocket {
+      aspect-ratio: 2.5 / 3.5;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.5rem 0.4rem 0.45rem;
+    }
+    .pocket.filled {
+      background: var(--cream);
+      border: 1px solid rgba(250,241,229,0.15);
+    }
+    .pocket.empty {
+      border: 1px dashed rgba(250,241,229,0.12);
+      background: transparent;
+    }
+    .pocket-pmark {
+      position: absolute;
+      top: 0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      opacity: 0.9;
+    }
+    .pocket-shirt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -54%);
+      opacity: 0.15;
+    }
+    .pocket-meta {
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .pocket-collection {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.42rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.45;
+      display: block;
+    }
+    .pocket-name {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: 0.58rem;
+      color: var(--navy);
+      display: block;
+      margin-top: 0.1rem;
+      line-height: 1.2;
+    }
+    .pocket-edition {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.4rem;
+      color: var(--navy);
+      opacity: 0.38;
+      display: block;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 800px) {
+      .binder-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .binder-visual { order: -1; }
+    }
+
+    /* ─── Closing (cream) ───────────────────────────────────── */
+    #closing {
+      background: var(--cream);
+      color: var(--navy);
+      text-align: center;
+    }
+    .closing-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .closing-inner .section-label { color: var(--navy); opacity: 0.4; }
+    .closing-inner .section-headline {
+      color: var(--navy);
+      font-size: clamp(2.2rem, 5vw, 3.75rem);
+      margin-bottom: 2rem;
+    }
+    .closing-inner .section-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .closing-body {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--navy);
+      opacity: 0.6;
+      max-width: 44ch;
+      margin: 0 auto;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 2.5rem clamp(1.5rem, 8vw, 6rem);
+      border-top: 1px solid rgba(250,241,229,0.07);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-mark { height: 22px; opacity: 0.65; }
+    .footer-text {
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .footer-social {
+      max-width: 1100px;
+      margin: 1.5rem auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .footer-link {
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      opacity: 0.5;
+      text-decoration: none;
+      transition: opacity 0.25s ease;
+    }
+    .footer-link:hover { opacity: 0.85; }
+    .footer-text-link {
+      text-decoration: none;
+      transition: opacity 0.25s ease;
+      color: var(--cream);
+    }
+    .footer-text-link:hover { opacity: 0.85; }
+    .footer-dot {
+      font-size: 0.5rem;
+      color: var(--cream);
+      opacity: 0.35;
+    }
+
+    /* ─── Scroll reveal ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
+
+    /* ─── Keyframes ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding-top: 7rem; }
+      .hero-body { margin: 0 auto 2.5rem; }
+      .story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story-inner .editorial-figure { max-height: 320px; }
+      .story-inner .editorial-img { height: 320px; }
+      .craft-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .card-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .card-visual { order: -1; }
+      .footer-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
+      .footer-social { flex-direction: column; gap: 0.5rem; margin-top: 1.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── Nav ─────────────────────────────────────────────────── -->
+  <nav id="nav">
+    <img src="./Logos/Provenance P Mark - Cream on Navy.svg" alt="Provenance" class="nav-mark" />
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#craft">Craft</a></li>
+      <li><a href="#card">The Card</a></li>
+      <li><a href="#binder">The Binder</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────── -->
+  <section id="hero">
+    <img
+      src="./Logos/Provenance Wordmark - Cream on Navy.svg"
+      alt="Provenance"
+      class="hero-wordmark"
+    />
+    <h1 class="hero-headline">
+      Every piece has a story <em>worth keeping.</em>
+    </h1>
+    <p class="hero-body">
+      <span>
+        Apparel for the collector. For people who know what they own,
+        why they own it, and exactly what it's worth.
+      </span>
+    </p>
+    <div class="hero-cta">
+      <a href="#story" class="btn-ghost">Our Story</a>
+    </div>
+  </section>
+
+  <!-- ─── Story ─────────────────────────────────────────────────── -->
+  <section id="story">
+    <div class="story-inner">
+
+      <figure class="editorial-figure reveal">
+        <img
+          src="./Images/collect-together.png"
+          alt="A grandfather opens a pack of sports cards with his grandson."
+          class="editorial-img"
+        />
+      </figure>
+
+      <div class="story-right">
+        <p class="section-label reveal" style="color:var(--navy);opacity:0.45;">The Brand</p>
+
+        <div class="story-divider reveal reveal-delay-1"></div>
+
+        <p class="reveal reveal-delay-2">
+          Some hobbies you do alone. This one you share. It's the box
+          you open with your dad. The friend who texts you when something
+          hits. The table at the show where you lose track of time.
+          Provenance is built around that.
+        </p>
+        <p class="reveal reveal-delay-3">
+          What you collect matters less than the fact that you're in it
+          together. The condition, the origin, the story behind it. Those
+          things mean something because the hobby taught you to
+          care that way.
+        </p>
+        <p class="reveal reveal-delay-4">
+          Made by someone who collects, for the people who collect.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Craft ─────────────────────────────────────────────────── -->
+  <section id="craft">
+    <div class="craft-inner">
+
+      <div class="craft-left">
+        <p class="section-label reveal">What We Stand For</p>
+        <h2 class="section-headline reveal reveal-delay-1">
+          Built on three<br/>principles.
+        </h2>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="pillar-header">
+            <div class="pillar-icon"></div>
+            <div class="pillar-title">The Obsession</div>
+          </div>
+          <p class="pillar-text">Built from inside the hobby. The culture, the community, the obsession.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-header">
+            <div class="pillar-icon"></div>
+            <div class="pillar-title">Intention</div>
+          </div>
+          <p class="pillar-text">Every drop is deliberate. You buy the one that means something.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-header">
+            <div class="pillar-icon"></div>
+            <div class="pillar-title">Taste</div>
+          </div>
+          <p class="pillar-text">You know what you like. The hobby taught you that. We build for people who bring that same eye to everything they own.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── The Card ─────────────────────────────────────────────── -->
+  <section id="card">
+    <div class="card-inner">
+      <div class="card-content">
+        <p class="section-label reveal">The Authentication Card</p>
+        <h2 class="section-headline reveal reveal-delay-1" style="color:var(--navy)">
+          Every piece ships<br/>with its story.
+        </h2>
+        <p class="section-body reveal reveal-delay-2">
+          Every Provenance garment includes an authentication card
+          documenting the piece, its production details, and its place
+          in the collection. The same care collectors give to graded
+          cards, applied to what they wear.
+        </p>
+        <div class="card-details">
+          <div class="card-detail reveal reveal-delay-2">
+            <div class="cd-bar"></div>
+            <p class="cd-text">Edition number, colorway, and production details documented for every piece.</p>
+          </div>
+          <div class="card-detail reveal reveal-delay-3">
+            <div class="cd-bar"></div>
+            <p class="cd-text">The card is part of the product. Proof of origin, proof of intent.</p>
+          </div>
+          <div class="card-detail reveal reveal-delay-4">
+            <div class="cd-bar"></div>
+            <p class="cd-text">Because owning something worth keeping means knowing its story.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-visual reveal reveal-delay-1">
+        <div class="auth-card-mock">
+          <img
+            src="./Logos/Provenance P Mark - Cream on Navy.svg"
+            alt="Provenance"
+            class="auth-card-pmark"
+          />
+          <div class="auth-card-title">Certificate of Authenticity</div>
+          <div class="auth-card-line"></div>
+          <div class="auth-card-meta">
+            <div class="auth-card-row">
+              <span class="auth-card-key">Collection</span>
+              <span class="auth-card-val">Season 01</span>
+            </div>
+            <div class="auth-card-row">
+              <span class="auth-card-key">Edition</span>
+              <span class="auth-card-val">001</span>
+            </div>
+            <div class="auth-card-row">
+              <span class="auth-card-key">Colorway</span>
+              <span class="auth-card-val">Navy</span>
+            </div>
+            <div class="auth-card-row">
+              <span class="auth-card-key">Origin</span>
+              <span class="auth-card-val">Provenance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Binder / Account ────────────────────────────────────────── -->
+  <section id="binder">
+    <div class="binder-inner">
+
+      <div class="binder-content">
+        <p class="section-label reveal">Your Account</p>
+        <h2 class="section-headline reveal reveal-delay-1">
+          Your collection,<br/>displayed like one.
+        </h2>
+        <p class="section-body reveal reveal-delay-2">
+          Every piece you own lives in your account the way cards live
+          in a binder: organized, documented, yours. The more you
+          collect, the more you earn.
+        </p>
+        <div class="binder-rewards reveal reveal-delay-3">
+          <div class="binder-reward">
+            <div class="br-diamond"></div>
+            <p class="br-text"><strong>Earn as you collect.</strong> The more your collection grows, the more you get back.</p>
+          </div>
+          <div class="binder-reward">
+            <div class="br-diamond"></div>
+            <p class="br-text"><strong>Built for collectors.</strong> A rewards system that reflects how the hobby actually works.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="binder-visual reveal reveal-delay-2">
+        <div class="binder-page">
+
+          <!-- Slot 1 — filled -->
+          <div class="pocket filled">
+            <img src="./Logos/Provenance P Mark - Navy.svg" class="pocket-pmark" alt="" />
+            <svg class="pocket-shirt" width="44" height="40" viewBox="0 0 44 40" fill="none">
+              <path d="M15 2 L2 10 L7 14 L7 38 L37 38 L37 14 L42 10 L29 2 C29 2 26 6 22 6 C18 6 15 2 15 2Z" fill="#08121A"/>
+            </svg>
+            <div class="pocket-meta">
+              <span class="pocket-collection">Season 01</span>
+              <span class="pocket-name">Provenance Mark Tee</span>
+              <span class="pocket-edition">Navy · Size L</span>
+            </div>
+          </div>
+
+          <!-- Slot 2 — filled -->
+          <div class="pocket filled">
+            <img src="./Logos/Provenance P Mark - Navy.svg" class="pocket-pmark" alt="" />
+            <svg class="pocket-shirt" width="44" height="40" viewBox="0 0 44 40" fill="none">
+              <path d="M15 2 L2 10 L7 14 L7 38 L37 38 L37 14 L42 10 L29 2 C29 2 26 6 22 6 C18 6 15 2 15 2Z" fill="#08121A"/>
+            </svg>
+            <div class="pocket-meta">
+              <span class="pocket-collection">Season 01</span>
+              <span class="pocket-name">Provenance Mark Tee</span>
+              <span class="pocket-edition">Cream · Size L</span>
+            </div>
+          </div>
+
+          <!-- Slot 3 — filled -->
+          <div class="pocket filled">
+            <img src="./Logos/Provenance P Mark - Navy.svg" class="pocket-pmark" alt="" />
+            <svg class="pocket-shirt" width="44" height="40" viewBox="0 0 44 40" fill="none">
+              <path d="M15 2 L2 10 L7 14 L7 38 L37 38 L37 14 L42 10 L29 2 C29 2 26 6 22 6 C18 6 15 2 15 2Z" fill="#08121A"/>
+            </svg>
+            <div class="pocket-meta">
+              <span class="pocket-collection">Season 01</span>
+              <span class="pocket-name">Collector Hoodie</span>
+              <span class="pocket-edition">Navy · Size L</span>
+            </div>
+          </div>
+
+          <!-- Slots 4–9 — empty -->
+          <div class="pocket empty"></div>
+          <div class="pocket empty"></div>
+          <div class="pocket empty"></div>
+          <div class="pocket empty"></div>
+          <div class="pocket empty"></div>
+          <div class="pocket empty"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Closing ──────────────────────────────────────────────── -->
+  <section id="closing">
+    <div class="closing-inner">
+      <p class="section-label reveal">Chapter One</p>
+      <h2 class="section-headline reveal reveal-delay-1">
+        Built slowly.<br/><em>On purpose.</em>
+      </h2>
+      <p class="closing-body reveal reveal-delay-2">
+        The hobby doesn't reward impatience. Neither do we. Provenance is
+        being built with the care it deserves. When the first collection
+        arrives, it will carry the kind of story worth keeping.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <img src="./Logos/Provenance P Mark - Cream on Navy.svg" alt="Provenance" class="footer-mark" />
+      <a href="https://www.utmoodysportscards.com" target="_blank" rel="noopener" class="footer-text footer-text-link">By UTMOODY Sports Cards</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/wearprovenance" target="_blank" rel="noopener" class="footer-link">@wearprovenance</a>
+      <span class="footer-dot">·</span>
+      <a href="mailto:hello@provenancebrand.com" class="footer-link">hello@provenancebrand.com</a>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ──────────────────────────────────────────────── -->
+  <script>
+    // Nav frosted glass on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  </script>
+
+</body>
+</html>

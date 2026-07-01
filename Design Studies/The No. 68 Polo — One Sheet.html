@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provenance — The No. 68 Polo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#EDE3D1;font-family:'Montserrat',sans-serif;width:1100px;margin:0 auto;}
+.one-sheet{width:1100px;}
+
+/* TOP HERO */
+.hero{display:grid;grid-template-columns:620px 1fr;height:580px;}
+.polo-wrap{position:relative;background:#EDE3D1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#polo-canvas{display:block;}
+
+/* RIGHT DETAIL PANELS */
+.detail-right{display:flex;flex-direction:column;border-left:1px solid rgba(8,18,26,0.12);}
+.d-panel{flex:1;border-bottom:1px solid rgba(8,18,26,0.12);position:relative;overflow:hidden;background:#F5ECD9;}
+.d-panel:last-child{border-bottom:none;}
+.d-panel canvas{display:block;width:100%;height:100%;}
+.d-caption{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:rgba(250,241,229,0.92);}
+.d-caption strong{display:block;font-size:8.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#08121A;margin-bottom:2px;}
+.d-caption span{font-size:9.5px;font-weight:300;color:#6B5F53;line-height:1.5;}
+
+/* DETAIL STRIP */
+.detail-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(8,18,26,0.15);}
+.d-tile{border-right:1px solid rgba(8,18,26,0.12);background:#F0E6D0;position:relative;overflow:hidden;}
+.d-tile:last-child{border-right:none;}
+.d-tile canvas{display:block;width:100%;height:180px;}
+.d-tile svg{display:block;width:100%;height:180px;}
+.d-tile-caption{padding:12px 14px 16px;}
+.d-tile-caption strong{display:block;font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#08121A;margin-bottom:3px;}
+.d-tile-caption span{font-size:9px;font-weight:300;color:#6B5F53;line-height:1.6;}
+
+/* FOOTER BANNER */
+.footer-banner{background:#C8823A;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;padding:0;}
+.f-block{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.2);}
+.f-block:last-child{border-right:none;}
+.f-block-main{border-right:1px solid rgba(255,255,255,0.3);}
+.f-badge-wrap{display:flex;align-items:center;gap:14px;}
+.f-badge{width:52px;height:52px;flex-shrink:0;}
+.f-main-text strong{display:block;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FAF1E5;margin-bottom:4px;}
+.f-main-text p{font-size:9.5px;font-weight:300;color:rgba(250,241,229,0.85);line-height:1.6;}
+.f-spec strong{display:block;font-size:8px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#FAF1E5;margin-bottom:5px;}
+.f-spec p{font-size:9px;font-weight:300;color:rgba(250,241,229,0.8);line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="one-sheet">
+
+  <div class="hero">
+    <div class="polo-wrap">
+      <canvas id="polo-canvas" width="620" height="580"></canvas>
+    </div>
+    <div class="detail-right">
+      <div class="d-panel">
+        <canvas id="d-collar" width="480" height="193"></canvas>
+        <div class="d-caption">
+          <strong>Vintage Card Stock Interior</strong>
+          <span>Amber textured collar tape — the exact warmth of the 1968 card back. Jacquard woven, 12mm.</span>
+        </div>
+      </div>
+      <div class="d-panel">
+        <canvas id="d-placket" width="480" height="193"></canvas>
+        <div class="d-caption">
+          <strong>1968 Border Placket</strong>
+          <span>Collar and placket faced in the 1968 mark-pattern weave. Amber marks on buff ground. 3-button, horn.</span>
+        </div>
+      </div>
+      <div class="d-panel">
+        <canvas id="d-tape" width="480" height="193"></canvas>
+        <div class="d-caption">
+          <strong>Interior Collar Tape</strong>
+          <span>Amber pattern tape on inside collar. A discovery detail — seen only by the wearer.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-strip">
+    <div class="d-tile">
+      <svg id="tile-baseball" viewBox="0 0 275 180" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="d-tile-caption">
+        <strong>No. 68 Back Badge</strong>
+        <span>Baseball-format badge at center back nape. Direct reference to the 1968 card number.</span>
+      </div>
+    </div>
+    <div class="d-tile">
+      <canvas id="tile-interior" width="275" height="180"></canvas>
+      <div class="d-tile-caption">
+        <strong>Interior Label System</strong>
+        <span>Brand label on amber pattern carrier. Quality signal inside the garment.</span>
+      </div>
+    </div>
+    <div class="d-tile">
+      <canvas id="tile-fabric" width="275" height="180"></canvas>
+      <div class="d-tile-caption">
+        <strong>Supima / TENCEL™ Piqué</strong>
+        <span>210 GSM. Enzyme washed. Cream holds its warmth — no optical brighteners.</span>
+      </div>
+    </div>
+    <div class="d-tile">
+      <svg id="tile-mark" viewBox="0 0 275 180" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="d-tile-caption">
+        <strong>Embroidered P Mark</strong>
+        <span>Left chest, 2.5cm. Chain stitch outline, navy thread. No fill — reads clean at scale.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-banner">
+    <div class="f-block f-block-main">
+      <div class="f-badge-wrap">
+        <svg class="f-badge" id="footer-baseball" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="f-main-text">
+          <strong>The No. 68 Polo</strong>
+          <p>1968 border pattern.<br>Timeless construction.<br>Made for those who know.</p>
+        </div>
+      </div>
+    </div>
+    <div class="f-block">
+      <div class="f-spec">
+        <strong>Premium Performance</strong>
+        <p>Supima cotton / TENCEL™<br>210 GSM enzyme piqué<br>Moisture-wicking finish</p>
+      </div>
+    </div>
+    <div class="f-block">
+      <div class="f-spec">
+        <strong>Built to Last</strong>
+        <p>French seams, flat-felled shoulder<br>Single-needle throughout<br>Natural horn buttons</p>
+      </div>
+    </div>
+    <div class="f-block">
+      <div class="f-spec">
+        <strong>Provenance Design</strong>
+        <p>1968 jacquard border weave<br>Woven No. 68 baseball badge<br>Embroidered P mark, left chest</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const DPR = window.devicePixelRatio || 1;
+const CREAM = '#FAF1E5', NAVY = '#08121A', GOLD = '#C4973A', AMBER = '#C8823A', BUFF = '#E8C98A';
+
+function seededRnd(s){return function(){s=(s*9301+49297)%233280;return s/233280;};}
+function roundRect(ctx,x,y,w,h,r){
+  if(r>w/2)r=w/2;if(r>h/2)r=h/2;
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function fillMarks(ctx,x,y,w,h,bg,mk,cols,rows,seed,dev,ar,alpha){
+  const r=seededRnd(seed),cw=w/cols,ch=h/rows;
+  ctx.fillStyle=bg;ctx.fillRect(x,y,w,h);
+  for(let row=0;row<rows;row++){for(let col=0;col<cols;col++){
+    const cx=x+(col+0.5)*cw+(r()-0.5)*2*dev*cw;
+    const cy=y+(row+0.5)*ch+(r()-0.5)*2*dev*ch;
+    const mw=cw*0.62*(0.88+r()*0.24),mh=ch*0.28*(0.88+r()*0.22);
+    const ang=(r()-0.5)*2*ar*Math.PI/180;
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(ang);
+    ctx.globalAlpha=alpha*(0.72+r()*0.32);ctx.fillStyle=mk;
+    roundRect(ctx,-mw/2,-mh/2,mw,mh,mh*0.38);ctx.fill();
+    ctx.restore();
+  }}
+  ctx.globalAlpha=1;
+}
+function setupHiDPI(canvas){
+  const W=canvas.width,H=canvas.height;
+  canvas.width=W*DPR;canvas.height=H*DPR;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');ctx.scale(DPR,DPR);
+  return{ctx,W,H};
+}
+
+/* ═══════════════════════════════════════════════════════
+   MAIN POLO CANVAS
+═══════════════════════════════════════════════════════ */
+function drawPolo(){
+  const canvas=document.getElementById('polo-canvas');
+  const W=620,H=580;
+  canvas.width=W*DPR;canvas.height=H*DPR;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');ctx.scale(DPR,DPR);
+
+  // Background
+  ctx.fillStyle='#EDE3D1';ctx.fillRect(0,0,W,H);
+
+  const cx=W/2,bodyTop=80,bodyBot=520;
+
+  // ── Shirt shadow ──────────────────────────────
+  ctx.save();
+  ctx.shadowColor='rgba(30,15,0,0.22)';ctx.shadowBlur=28;ctx.shadowOffsetX=10;ctx.shadowOffsetY=14;
+  ctx.fillStyle='rgba(200,180,140,0.01)';
+  ctx.beginPath();
+  // body
+  ctx.moveTo(135,bodyTop+30);ctx.lineTo(80,bodyTop);ctx.lineTo(50,bodyTop+80);ctx.lineTo(30,510);
+  ctx.lineTo(590,510);ctx.lineTo(570,bodyTop+80);ctx.lineTo(540,bodyTop);ctx.lineTo(485,bodyTop+30);
+  ctx.lineTo(cx+22,bodyTop+82);ctx.lineTo(cx-22,bodyTop+82);ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  // ── Polo body ─────────────────────────────────
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(142,bodyTop+26);
+  ctx.lineTo(80,bodyTop);
+  ctx.lineTo(48,bodyTop+82);
+  ctx.lineTo(32,bodyBot);
+  ctx.lineTo(588,bodyBot);
+  ctx.lineTo(572,bodyTop+82);
+  ctx.lineTo(540,bodyTop);
+  ctx.lineTo(478,bodyTop+26);
+  ctx.lineTo(cx+24,bodyTop+86);
+  ctx.lineTo(cx-24,bodyTop+86);
+  ctx.closePath();
+
+  const bodyGrad=ctx.createRadialGradient(cx,H*0.42,0,cx,H*0.42,300);
+  bodyGrad.addColorStop(0,'#FEFAF3');
+  bodyGrad.addColorStop(0.5,'#FAF1E5');
+  bodyGrad.addColorStop(0.85,'#F0E3CC');
+  bodyGrad.addColorStop(1,'#E4D2B2');
+  ctx.fillStyle=bodyGrad;ctx.fill();
+  ctx.strokeStyle='rgba(8,18,26,0.08)';ctx.lineWidth=0.5;ctx.stroke();
+  ctx.restore();
+
+  // ── Left sleeve ───────────────────────────────
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(142,bodyTop+26);ctx.lineTo(80,bodyTop);
+  ctx.lineTo(20,bodyTop+55);ctx.lineTo(10,bodyTop+130);
+  ctx.lineTo(48,bodyTop+82);ctx.closePath();
+  const lSlvGrad=ctx.createLinearGradient(20,bodyTop,140,bodyTop+100);
+  lSlvGrad.addColorStop(0,'#F5E8D0');lSlvGrad.addColorStop(1,'#FAF1E5');
+  ctx.fillStyle=lSlvGrad;ctx.fill();
+  ctx.strokeStyle='rgba(8,18,26,0.07)';ctx.lineWidth=0.5;ctx.stroke();
+  ctx.restore();
+
+  // Sleeve cuff edge shadow
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(10,bodyTop+130);ctx.lineTo(16,bodyTop+140);ctx.lineTo(50,bodyTop+92);ctx.lineTo(48,bodyTop+82);ctx.closePath();
+  ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fill();
+  ctx.restore();
+
+  // ── Right sleeve ──────────────────────────────
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(478,bodyTop+26);ctx.lineTo(540,bodyTop);
+  ctx.lineTo(600,bodyTop+55);ctx.lineTo(610,bodyTop+130);
+  ctx.lineTo(572,bodyTop+82);ctx.closePath();
+  const rSlvGrad=ctx.createLinearGradient(600,bodyTop,480,bodyTop+100);
+  rSlvGrad.addColorStop(0,'#F2E5CC');rSlvGrad.addColorStop(1,'#FAF1E5');
+  ctx.fillStyle=rSlvGrad;ctx.fill();
+  ctx.strokeStyle='rgba(8,18,26,0.07)';ctx.lineWidth=0.5;ctx.stroke();
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(610,bodyTop+130);ctx.lineTo(604,bodyTop+140);ctx.lineTo(570,bodyTop+92);ctx.lineTo(572,bodyTop+82);ctx.closePath();
+  ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fill();
+  ctx.restore();
+
+  // ── Body side shading ─────────────────────────
+  ctx.save();
+  const lShade=ctx.createLinearGradient(32,400,180,400);
+  lShade.addColorStop(0,'rgba(80,40,10,0.1)');lShade.addColorStop(1,'rgba(80,40,10,0)');
+  ctx.fillStyle=lShade;
+  ctx.beginPath();ctx.moveTo(32,bodyTop+50);ctx.lineTo(180,bodyTop+60);ctx.lineTo(180,bodyBot);ctx.lineTo(32,bodyBot);ctx.closePath();
+  ctx.fill();
+  const rShade=ctx.createLinearGradient(588,400,440,400);
+  rShade.addColorStop(0,'rgba(80,40,10,0.1)');rShade.addColorStop(1,'rgba(80,40,10,0)');
+  ctx.fillStyle=rShade;
+  ctx.beginPath();ctx.moveTo(588,bodyTop+50);ctx.lineTo(440,bodyTop+60);ctx.lineTo(440,bodyBot);ctx.lineTo(588,bodyBot);ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  // ── Placket ───────────────────────────────────
+  const pL=cx-18,pR=cx+18,pTop=bodyTop+84,pBot=bodyBot;
+  // Draw pattern into placket
+  ctx.save();
+  ctx.beginPath();ctx.rect(pL,pTop,pR-pL,pBot-pTop);ctx.clip();
+  fillMarks(ctx,pL,pTop,pR-pL,pBot-pTop,BUFF,AMBER,5,30,44,0.22,5,0.85);
+  ctx.restore();
+  // Placket border lines
+  ctx.strokeStyle='rgba(8,18,26,0.18)';ctx.lineWidth=0.8;
+  ctx.beginPath();ctx.moveTo(pL,pTop);ctx.lineTo(pL,pBot);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pR,pTop);ctx.lineTo(pR,pBot);ctx.stroke();
+
+  // Buttons
+  [130,175,220].forEach(y=>{
+    ctx.save();
+    ctx.shadowColor='rgba(0,0,0,0.2)';ctx.shadowBlur=3;ctx.shadowOffsetY=1;
+    const bGrad=ctx.createRadialGradient(cx-1,y-1,0,cx,y,6);
+    bGrad.addColorStop(0,'#D4B882');bGrad.addColorStop(1,'#8B6830');
+    ctx.fillStyle=bGrad;
+    ctx.beginPath();ctx.arc(cx,y,6,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle='rgba(60,30,10,0.4)';ctx.lineWidth=0.5;
+    ctx.beginPath();ctx.arc(cx,y,6,0,Math.PI*2);ctx.stroke();
+    // Button holes
+    [[-2,-2],[2,-2],[-2,2],[2,2]].forEach(([dx,dy])=>{
+      ctx.fillStyle='rgba(30,10,0,0.6)';ctx.beginPath();ctx.arc(cx+dx,y+dy,1,0,Math.PI*2);ctx.fill();
+    });
+  });
+
+  // ── Left collar flap ─────────────────────────
+  const collarPath_L=new Path2D();
+  collarPath_L.moveTo(cx-24,bodyTop+86);
+  collarPath_L.lineTo(cx-22,bodyTop+30);
+  collarPath_L.bezierCurveTo(cx-30,bodyTop+20,cx-60,bodyTop+12,cx-90,bodyTop+18);
+  collarPath_L.lineTo(cx-120,bodyTop+38);
+  collarPath_L.lineTo(cx-80,bodyTop+50);
+  collarPath_L.bezierCurveTo(cx-55,bodyTop+52,cx-35,bodyTop+60,cx-24,bodyTop+86);
+  collarPath_L.closePath();
+
+  ctx.save();ctx.clip(collarPath_L);
+  fillMarks(ctx,cx-130,bodyTop,130,100,BUFF,AMBER,14,8,7,0.22,5,0.88);
+  ctx.restore();
+  ctx.strokeStyle='rgba(8,18,26,0.18)';ctx.lineWidth=0.8;ctx.stroke(collarPath_L);
+
+  // Collar shadow
+  ctx.save();
+  const colLsh=ctx.createLinearGradient(cx-24,bodyTop+86,cx-24,bodyTop+50);
+  colLsh.addColorStop(0,'rgba(0,0,0,0.08)');colLsh.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=colLsh;
+  ctx.beginPath();ctx.moveTo(cx-24,bodyTop+86);ctx.lineTo(cx-24,bodyTop+60);ctx.lineTo(cx-50,bodyTop+60);ctx.closePath();
+  ctx.fill();ctx.restore();
+
+  // ── Right collar flap ─────────────────────────
+  const collarPath_R=new Path2D();
+  collarPath_R.moveTo(cx+24,bodyTop+86);
+  collarPath_R.lineTo(cx+22,bodyTop+30);
+  collarPath_R.bezierCurveTo(cx+30,bodyTop+20,cx+60,bodyTop+12,cx+90,bodyTop+18);
+  collarPath_R.lineTo(cx+120,bodyTop+38);
+  collarPath_R.lineTo(cx+80,bodyTop+50);
+  collarPath_R.bezierCurveTo(cx+55,bodyTop+52,cx+35,bodyTop+60,cx+24,bodyTop+86);
+  collarPath_R.closePath();
+
+  ctx.save();ctx.clip(collarPath_R);
+  fillMarks(ctx,cx,bodyTop,130,100,BUFF,AMBER,14,8,7,0.22,5,0.88);
+  ctx.restore();
+  ctx.strokeStyle='rgba(8,18,26,0.18)';ctx.lineWidth=0.8;ctx.stroke(collarPath_R);
+
+  // Collar underside shadow on right
+  ctx.save();
+  const colRsh=ctx.createLinearGradient(cx+24,bodyTop+86,cx+24,bodyTop+50);
+  colRsh.addColorStop(0,'rgba(0,0,0,0.05)');colRsh.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=colRsh;
+  ctx.beginPath();ctx.moveTo(cx+24,bodyTop+86);ctx.lineTo(cx+24,bodyTop+60);ctx.lineTo(cx+50,bodyTop+60);ctx.closePath();
+  ctx.fill();ctx.restore();
+
+  // Collar piping (thin navy line along collar edge)
+  ctx.strokeStyle='rgba(8,18,26,0.35)';ctx.lineWidth=1.2;
+  ctx.beginPath();
+  ctx.moveTo(cx-24,bodyTop+86);
+  ctx.bezierCurveTo(cx-35,bodyTop+60,cx-55,bodyTop+52,cx-80,bodyTop+50);
+  ctx.lineTo(cx-120,bodyTop+38);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cx+24,bodyTop+86);
+  ctx.bezierCurveTo(cx+35,bodyTop+60,cx+55,bodyTop+52,cx+80,bodyTop+50);
+  ctx.lineTo(cx+120,bodyTop+38);
+  ctx.stroke();
+
+  // ── Provenance script (chest) ─────────────────
+  ctx.save();
+  ctx.font='italic 300 48px "Cormorant Garamond", serif';
+  ctx.fillStyle='rgba(8,18,26,0.85)';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Provenance',cx-30,bodyTop+200);
+
+  // Underline
+  const tw=ctx.measureText('Provenance').width;
+  ctx.strokeStyle='rgba(8,18,26,0.5)';ctx.lineWidth=0.8;
+  ctx.beginPath();ctx.moveTo(cx-30-tw/2,bodyTop+218);ctx.lineTo(cx-30+tw/2,bodyTop+218);ctx.stroke();
+
+  // Dot
+  ctx.fillStyle='rgba(196,151,58,0.9)';
+  ctx.beginPath();ctx.arc(cx-30,bodyTop+226,2,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+
+  // ── Bottom hem detail ─────────────────────────
+  ctx.save();
+  ctx.strokeStyle='rgba(8,18,26,0.1)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(32,bodyBot-6);ctx.lineTo(588,bodyBot-6);ctx.stroke();
+  ctx.restore();
+
+  // ── Side vents ────────────────────────────────
+  ctx.save();
+  ctx.strokeStyle='rgba(8,18,26,0.12)';ctx.lineWidth=0.8;
+  ctx.beginPath();ctx.moveTo(56,bodyBot-40);ctx.lineTo(56,bodyBot);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(564,bodyBot-40);ctx.lineTo(564,bodyBot);ctx.stroke();
+  ctx.restore();
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASEBALL BADGE SVG
+═══════════════════════════════════════════════════════ */
+function buildBaseballBadge(svgId,size,num,bg,fg,stitchColor){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById(svgId);
+  if(!svg)return;
+  const R=size/2-3;
+  const cx=svg.viewBox.baseVal.width/2;
+  const cy=svg.viewBox.baseVal.height/2;
+
+  // Outer circle with leather fill
+  const ballBg=document.createElementNS(ns,'circle');
+  ballBg.setAttribute('cx',cx);ballBg.setAttribute('cy',cy);ballBg.setAttribute('r',R+1);
+  ballBg.setAttribute('fill',bg);ballBg.setAttribute('stroke',fg);ballBg.setAttribute('stroke-width','1.8');
+  svg.appendChild(ballBg);
+
+  // Inner ring
+  const innerRing=document.createElementNS(ns,'circle');
+  innerRing.setAttribute('cx',cx);innerRing.setAttribute('cy',cy);innerRing.setAttribute('r',R-4);
+  innerRing.setAttribute('fill','none');innerRing.setAttribute('stroke',fg);innerRing.setAttribute('stroke-width','0.7');innerRing.setAttribute('opacity','0.4');
+  svg.appendChild(innerRing);
+
+  // Baseball stitch curves — left
+  const sc=stitchColor;
+  function stitchCurve(d,side){
+    const path=document.createElementNS(ns,'path');
+    path.setAttribute('d',d);path.setAttribute('fill','none');
+    path.setAttribute('stroke',sc);path.setAttribute('stroke-width','1.4');path.setAttribute('stroke-linecap','round');
+    svg.appendChild(path);
+    // Tick marks
+    const ticks=6;
+    for(let i=0;i<ticks;i++){
+      const t=i/(ticks-1);
+      // approximate tick positions along curves
+    }
+  }
+
+  // Left stitch arc
+  const lArc=document.createElementNS(ns,'path');
+  const la=cx-R*0.42;
+  lArc.setAttribute('d',`M ${la-6} ${cy-R*0.38} C ${la+8} ${cy-R*0.15} ${la+8} ${cy+R*0.15} ${la-6} ${cy+R*0.38}`);
+  lArc.setAttribute('fill','none');lArc.setAttribute('stroke',sc);lArc.setAttribute('stroke-width','1.5');lArc.setAttribute('stroke-linecap','round');
+  svg.appendChild(lArc);
+
+  // Left tick marks
+  for(let i=0;i<5;i++){
+    const t=(i+0.5)/5;
+    const baseY=cy-R*0.38+t*(R*0.76);
+    const baseX=la-6+(Math.sin(t*Math.PI)*14);
+    const tick=document.createElementNS(ns,'line');
+    tick.setAttribute('x1',baseX-5);tick.setAttribute('y1',baseY);tick.setAttribute('x2',baseX+5);tick.setAttribute('y2',baseY);
+    tick.setAttribute('stroke',sc);tick.setAttribute('stroke-width','1');tick.setAttribute('stroke-linecap','round');
+    svg.appendChild(tick);
+  }
+
+  // Right stitch arc
+  const rArc=document.createElementNS(ns,'path');
+  const ra=cx+R*0.42;
+  rArc.setAttribute('d',`M ${ra+6} ${cy-R*0.38} C ${ra-8} ${cy-R*0.15} ${ra-8} ${cy+R*0.15} ${ra+6} ${cy+R*0.38}`);
+  rArc.setAttribute('fill','none');rArc.setAttribute('stroke',sc);rArc.setAttribute('stroke-width','1.5');rArc.setAttribute('stroke-linecap','round');
+  svg.appendChild(rArc);
+
+  for(let i=0;i<5;i++){
+    const t=(i+0.5)/5;
+    const baseY=cy-R*0.38+t*(R*0.76);
+    const baseX=ra+6-(Math.sin(t*Math.PI)*14);
+    const tick=document.createElementNS(ns,'line');
+    tick.setAttribute('x1',baseX-5);tick.setAttribute('y1',baseY);tick.setAttribute('x2',baseX+5);tick.setAttribute('y2',baseY);
+    tick.setAttribute('stroke',sc);tick.setAttribute('stroke-width','1');tick.setAttribute('stroke-linecap','round');
+    svg.appendChild(tick);
+  }
+
+  // Number
+  const numText=document.createElementNS(ns,'text');
+  numText.setAttribute('x',cx);numText.setAttribute('y',cy+size*0.155);
+  numText.setAttribute('text-anchor','middle');numText.setAttribute('fill',fg);
+  numText.setAttribute('font-size',size*0.42);
+  numText.setAttribute('font-family','Cormorant Garamond, serif');numText.setAttribute('font-weight','300');
+  numText.textContent=num;
+  svg.appendChild(numText);
+}
+
+/* ═══════════════════════════════════════════════════════
+   DETAIL PANEL CANVASES
+═══════════════════════════════════════════════════════ */
+function drawCollarDetail(){
+  const {ctx,W,H}=setupHiDPI(document.getElementById('d-collar'));
+  // Cream fabric background
+  ctx.fillStyle='#F5ECD9';ctx.fillRect(0,0,W,H);
+  // Interior of collar visible — amber pattern tape
+  const tapeH=H*0.55,tapeY=(H-tapeH)/2;
+  ctx.save();
+  // Slight perspective: wider at bottom
+  ctx.beginPath();
+  ctx.moveTo(0,tapeY+8);ctx.lineTo(W,tapeY);ctx.lineTo(W,tapeY+tapeH);ctx.lineTo(0,tapeY+tapeH+8);ctx.closePath();
+  ctx.clip();
+  fillMarks(ctx,0,tapeY,W,tapeH+8,BUFF,AMBER,Math.floor(W/10),Math.floor(tapeH/6),11,0.24,5,0.85);
+  ctx.restore();
+  // Fabric body above and below
+  const bGrad=ctx.createLinearGradient(0,0,0,tapeY);
+  bGrad.addColorStop(0,'#F8EDD8');bGrad.addColorStop(1,'#F0E3C8');
+  ctx.fillStyle=bGrad;ctx.fillRect(0,0,W,tapeY+8);
+
+  const bGrad2=ctx.createLinearGradient(0,tapeY+tapeH,0,H);
+  bGrad2.addColorStop(0,'#EFE1C6');bGrad2.addColorStop(1,'#F5EAD6');
+  ctx.fillStyle=bGrad2;ctx.fillRect(0,tapeY+tapeH,W,H-tapeY-tapeH+8);
+
+  // Seam lines
+  ctx.strokeStyle='rgba(8,18,26,0.15)';ctx.lineWidth=0.8;
+  ctx.beginPath();ctx.moveTo(0,tapeY+8);ctx.lineTo(W,tapeY);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(0,tapeY+tapeH+8);ctx.lineTo(W,tapeY+tapeH);ctx.stroke();
+}
+
+function drawPlacketDetail(){
+  const {ctx,W,H}=setupHiDPI(document.getElementById('d-placket'));
+  ctx.fillStyle='#F0E4CC';ctx.fillRect(0,0,W,H);
+
+  // Main fabric (cream body on left)
+  const bGrad=ctx.createRadialGradient(W*0.3,H*0.5,0,W*0.3,H*0.5,W*0.5);
+  bGrad.addColorStop(0,'#FEFAF3');bGrad.addColorStop(1,'#F0E2CA');
+  ctx.fillStyle=bGrad;ctx.fillRect(0,0,W*0.38,H);
+
+  // Placket strip (amber pattern)
+  const pW=W*0.22,pX=W*0.38;
+  ctx.save();ctx.beginPath();ctx.rect(pX,0,pW,H);ctx.clip();
+  fillMarks(ctx,pX,0,pW,H,BUFF,AMBER,7,18,22,0.22,5,0.85);
+  ctx.restore();
+  ctx.strokeStyle='rgba(8,18,26,0.18)';ctx.lineWidth=0.8;
+  ctx.beginPath();ctx.moveTo(pX,0);ctx.lineTo(pX,H);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pX+pW,0);ctx.lineTo(pX+pW,H);ctx.stroke();
+
+  // Cream body right side
+  const bGrad2=ctx.createRadialGradient(W*0.8,H*0.5,0,W*0.8,H*0.5,W*0.4);
+  bGrad2.addColorStop(0,'#FAF1E5');bGrad2.addColorStop(1,'#EEE0C8');
+  ctx.fillStyle=bGrad2;ctx.fillRect(pX+pW,0,W-(pX+pW),H);
+
+  // Buttons on placket
+  [H*0.2,H*0.5,H*0.8].forEach(y=>{
+    ctx.save();
+    ctx.shadowColor='rgba(0,0,0,0.25)';ctx.shadowBlur=4;ctx.shadowOffsetY=2;
+    const bGrd=ctx.createRadialGradient(pX+pW/2-1,y-1,0,pX+pW/2,y,7);
+    bGrd.addColorStop(0,'#D4B882');bGrd.addColorStop(1,'#7A5820');
+    ctx.fillStyle=bGrd;ctx.beginPath();ctx.arc(pX+pW/2,y,7,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle='rgba(50,20,0,0.35)';ctx.lineWidth=0.5;
+    ctx.beginPath();ctx.arc(pX+pW/2,y,7,0,Math.PI*2);ctx.stroke();
+    [[-2,-2],[2,-2],[-2,2],[2,2]].forEach(([dx,dy])=>{
+      ctx.fillStyle='rgba(20,5,0,0.6)';ctx.beginPath();ctx.arc(pX+pW/2+dx,y+dy,1.1,0,Math.PI*2);ctx.fill();
+    });
+  });
+}
+
+function drawTapeDetail(){
+  const {ctx,W,H}=setupHiDPI(document.getElementById('d-tape'));
+  ctx.fillStyle='#EDE1CB';ctx.fillRect(0,0,W,H);
+
+  // Fabric context at top (cream)
+  const fabH=H*0.28;
+  ctx.fillStyle='#F5ECD9';ctx.fillRect(0,0,W,fabH);
+
+  // Collar tape — amber pattern, narrow band
+  const tH=H*0.3,tY=fabH;
+  ctx.save();ctx.beginPath();ctx.rect(0,tY,W,tH);ctx.clip();
+  fillMarks(ctx,0,tY,W,tH,BUFF,AMBER,Math.floor(W/7),5,33,0.22,5,0.82);
+  ctx.restore();
+
+  // Thin gold piping lines at tape edges
+  ctx.strokeStyle='rgba(8,18,26,0.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,tY);ctx.lineTo(W,tY);ctx.stroke();
+  ctx.strokeStyle=GOLD;ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(0,tY+2);ctx.lineTo(W,tY+2);ctx.stroke();
+  ctx.strokeStyle='rgba(8,18,26,0.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,tY+tH);ctx.lineTo(W,tY+tH);ctx.stroke();
+  ctx.strokeStyle=GOLD;ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(0,tY+tH-2);ctx.lineTo(W,tY+tH-2);ctx.stroke();
+
+  // Cream collar interior below
+  const bGrd=ctx.createLinearGradient(0,tY+tH,0,H);
+  bGrd.addColorStop(0,'#EEE1CB');bGrd.addColorStop(1,'#F5EBD5');
+  ctx.fillStyle=bGrd;ctx.fillRect(0,tY+tH,W,H-tY-tH);
+
+  // Label hint
+  const lx=W/2-42,ly=tY+tH+12,lw=84,lh=36;
+  ctx.fillStyle='#FAF1E5';ctx.fillRect(lx,ly,lw,lh);
+  ctx.strokeStyle='rgba(8,18,26,0.2)';ctx.lineWidth=0.6;ctx.strokeRect(lx,ly,lw,lh);
+  ctx.fillStyle='rgba(8,18,26,0.7)';ctx.font='500 8px Montserrat,sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('PROVENANCE',W/2,ly+lh/2-5);
+  ctx.fillStyle='rgba(8,18,26,0.4)';ctx.font='300 7px Montserrat,sans-serif';
+  ctx.fillText('M',W/2,ly+lh/2+7);
+}
+
+/* Bottom tiles */
+function drawInteriorTile(){
+  const {ctx,W,H}=setupHiDPI(document.getElementById('tile-interior'));
+  fillMarks(ctx,0,0,W,H,BUFF,AMBER,Math.floor(W/8),Math.floor(H/5),55,0.24,5,0.82);
+  // Label on top
+  const lw=W*0.65,lh=H*0.42,lx=(W-lw)/2,ly=(H-lh)/2;
+  ctx.fillStyle=CREAM;ctx.fillRect(lx,ly,lw,lh);
+  ctx.strokeStyle='rgba(8,18,26,0.25)';ctx.lineWidth=0.7;ctx.strokeRect(lx,ly,lw,lh);
+  // Inner rule
+  ctx.strokeStyle='rgba(8,18,26,0.12)';ctx.lineWidth=0.5;
+  ctx.strokeRect(lx+3,ly+3,lw-6,lh-6);
+  ctx.fillStyle=NAVY;ctx.font='italic 300 16px "Cormorant Garamond",serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Provenance',W/2,H/2-4);
+  ctx.strokeStyle='rgba(8,18,26,0.35)';ctx.lineWidth=0.5;
+  const tw2=ctx.measureText('Provenance').width;
+  ctx.beginPath();ctx.moveTo(W/2-tw2/2,H/2+9);ctx.lineTo(W/2+tw2/2,H/2+9);ctx.stroke();
+}
+
+function drawFabricTile(){
+  const {ctx,W,H}=setupHiDPI(document.getElementById('tile-fabric'));
+  // Render a close-up piqué texture
+  const baseGrad=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.6);
+  baseGrad.addColorStop(0,'#FEFAF3');baseGrad.addColorStop(0.6,'#FAF1E5');baseGrad.addColorStop(1,'#EEE0CB');
+  ctx.fillStyle=baseGrad;ctx.fillRect(0,0,W,H);
+
+  // Piqué grid texture
+  const r=seededRnd(77);
+  const grid=12;
+  for(let y=0;y<H;y+=grid){for(let x=0;x<W;x+=grid){
+    const alpha=0.04+r()*0.04;
+    ctx.fillStyle=`rgba(8,18,26,${alpha})`;
+    ctx.fillRect(x,y,grid-1,grid-1);
+    // Raised piqué bump (lighter center)
+    ctx.fillStyle=`rgba(255,255,255,${0.06+r()*0.06})`;
+    ctx.fillRect(x+2,y+2,grid-5,grid-5);
+  }}
+
+  // "Fabric" label
+  ctx.fillStyle='rgba(8,18,26,0.55)';ctx.font='300 9px Montserrat,sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Supima / TENCEL™ piqué — 210 GSM',W/2,H-16);
+}
+
+/* P Mark tile */
+function buildPMarkTile(){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('tile-mark');
+  svg.style.background='#F0E6D0';
+
+  // Background fabric hint
+  const bgRect=document.createElementNS(ns,'rect');
+  bgRect.setAttribute('width','275');bgRect.setAttribute('height','180');bgRect.setAttribute('fill','#F0E6D0');
+  svg.appendChild(bgRect);
+
+  // Enlarged P mark illustration (the actual calligraphic P mark)
+  const g=document.createElementNS(ns,'g');g.setAttribute('transform','translate(137,88)');
+
+  // P letterform (stylized, matching brand P mark)
+  const pPath=document.createElementNS(ns,'path');
+  pPath.setAttribute('d','M -22 -44 L -22 44 M -22 -44 C -22 -44 10 -44 18 -30 C 26 -16 26 -8 18 6 C 10 20 -10 20 -22 18');
+  pPath.setAttribute('stroke',NAVY);pPath.setAttribute('stroke-width','5.5');pPath.setAttribute('fill','none');
+  pPath.setAttribute('stroke-linecap','round');pPath.setAttribute('stroke-linejoin','round');
+  g.appendChild(pPath);
+
+  // Provenance script
+  const pText=document.createElementNS(ns,'text');
+  pText.setAttribute('x','0');pText.setAttribute('y','70');pText.setAttribute('text-anchor','middle');
+  pText.setAttribute('fill',NAVY);pText.setAttribute('font-family','Cormorant Garamond,serif');
+  pText.setAttribute('font-size','13');pText.setAttribute('font-weight','300');pText.setAttribute('font-style','italic');
+  pText.textContent='Provenance';
+  g.appendChild(pText);
+
+  // Underline
+  const ul=document.createElementNS(ns,'line');
+  ul.setAttribute('x1','-44');ul.setAttribute('y1','76');ul.setAttribute('x2','44');ul.setAttribute('y2','76');
+  ul.setAttribute('stroke',NAVY);ul.setAttribute('stroke-width','0.6');ul.setAttribute('opacity','0.5');
+  g.appendChild(ul);
+
+  // Gold dot
+  const dot=document.createElementNS(ns,'circle');
+  dot.setAttribute('cx','0');dot.setAttribute('cy','82');dot.setAttribute('r','2.5');dot.setAttribute('fill',GOLD);
+  g.appendChild(dot);
+
+  svg.appendChild(g);
+
+  // "Actual size" note
+  const note=document.createElementNS(ns,'text');
+  note.setAttribute('x','137');note.setAttribute('y','168');note.setAttribute('text-anchor','middle');
+  note.setAttribute('fill','#8B7A66');note.setAttribute('font-size','8');note.setAttribute('font-family','Montserrat,sans-serif');
+  note.textContent='Shown at scale — 2.5cm on garment';
+  svg.appendChild(note);
+}
+
+/* Footer baseball badge */
+function buildFooterBadge(){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('footer-baseball');
+  const R=23,cx=26,cy=26;
+
+  const ballBg=document.createElementNS(ns,'circle');
+  ballBg.setAttribute('cx',cx);ballBg.setAttribute('cy',cy);ballBg.setAttribute('r',R);
+  ballBg.setAttribute('fill',BUFF);ballBg.setAttribute('stroke',CREAM);ballBg.setAttribute('stroke-width','1.5');
+  svg.appendChild(ballBg);
+
+  // Stitch left
+  const lA=document.createElementNS(ns,'path');
+  const la=cx-R*0.42;
+  lA.setAttribute('d',`M ${la-4} ${cy-R*0.38} C ${la+6} ${cy-R*0.1} ${la+6} ${cy+R*0.1} ${la-4} ${cy+R*0.38}`);
+  lA.setAttribute('fill','none');lA.setAttribute('stroke','#C05020');lA.setAttribute('stroke-width','1.2');lA.setAttribute('stroke-linecap','round');
+  svg.appendChild(lA);
+  for(let i=0;i<4;i++){
+    const t=(i+0.5)/4;
+    const baseY=cy-R*0.38+t*(R*0.76);const baseX=la-4+(Math.sin(t*Math.PI)*10);
+    const tk=document.createElementNS(ns,'line');
+    tk.setAttribute('x1',baseX-3.5);tk.setAttribute('y1',baseY);tk.setAttribute('x2',baseX+3.5);tk.setAttribute('y2',baseY);
+    tk.setAttribute('stroke','#C05020');tk.setAttribute('stroke-width','0.9');tk.setAttribute('stroke-linecap','round');
+    svg.appendChild(tk);
+  }
+
+  // Stitch right
+  const rA=document.createElementNS(ns,'path');
+  const ra=cx+R*0.42;
+  rA.setAttribute('d',`M ${ra+4} ${cy-R*0.38} C ${ra-6} ${cy-R*0.1} ${ra-6} ${cy+R*0.1} ${ra+4} ${cy+R*0.38}`);
+  rA.setAttribute('fill','none');rA.setAttribute('stroke','#C05020');rA.setAttribute('stroke-width','1.2');rA.setAttribute('stroke-linecap','round');
+  svg.appendChild(rA);
+  for(let i=0;i<4;i++){
+    const t=(i+0.5)/4;
+    const baseY=cy-R*0.38+t*(R*0.76);const baseX=ra+4-(Math.sin(t*Math.PI)*10);
+    const tk=document.createElementNS(ns,'line');
+    tk.setAttribute('x1',baseX-3.5);tk.setAttribute('y1',baseY);tk.setAttribute('x2',baseX+3.5);tk.setAttribute('y2',baseY);
+    tk.setAttribute('stroke','#C05020');tk.setAttribute('stroke-width','0.9');tk.setAttribute('stroke-linecap','round');
+    svg.appendChild(tk);
+  }
+
+  const numT=document.createElementNS(ns,'text');
+  numT.setAttribute('x',cx);numT.setAttribute('y',cy+8);numT.setAttribute('text-anchor','middle');
+  numT.setAttribute('fill',NAVY);numT.setAttribute('font-size','18');
+  numT.setAttribute('font-family','Cormorant Garamond,serif');numT.setAttribute('font-weight','300');
+  numT.textContent='68';
+  svg.appendChild(numT);
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT ALL
+═══════════════════════════════════════════════════════ */
+window.addEventListener('load',function(){
+  drawPolo();
+  // Baseball badge in tile (cream on navy)
+  buildBaseballBadge('tile-baseball',72,'68',NAVY,CREAM,'#C8823A');
+  buildFooterBadge();
+  buildPMarkTile();
+  drawCollarDetail();
+  drawPlacketDetail();
+  drawTapeDetail();
+  drawInteriorTile();
+  drawFabricTile();
+});
+</script>
+</body>
+</html>

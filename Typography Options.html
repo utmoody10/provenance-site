@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provenance — Typography Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+Infant:ital,wght@0,300;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500&family=Inter:wght@200;300;400;500&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;1,300&family=EB+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&family=Abril+Fatface&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;600&family=Poiret+One&family=Raleway:wght@200;300;400;500;600&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Bebas+Neue&family=Arvo:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #F2E8DA;
+    color: #08121A;
+    padding: 48px 40px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #08121A;
+  }
+  .page-header .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: #08121A; margin-bottom: 10px;
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: #08121A;
+  }
+  .page-header p {
+    font-size: 11px; color: #4a4a4a;
+    margin-top: 8px; letter-spacing: 0.05em;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .option-card {
+    background: #FAF1E5;
+    border: 1px solid #D9C9B0;
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .option-number {
+    position: absolute; top: 14px; right: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.2em; color: #9a8e82;
+  }
+
+  .direction-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #6b5f53; margin-bottom: 6px;
+  }
+
+  .font-labels {
+    display: flex; gap: 6px;
+    margin-bottom: 22px; flex-wrap: wrap; align-items: center;
+  }
+  .chip {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid #08121A; color: #08121A;
+  }
+  .chip.secondary { background: #08121A; color: #FAF1E5; }
+  .chip.accent { border-color: #8B7355; color: #8B7355; }
+
+  .current-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: #08121A; color: #FAF1E5;
+    padding: 2px 8px; vertical-align: middle;
+  }
+
+  .sample-divider {
+    border: none; border-top: 0.5px solid #C4B49A; margin: 18px 0;
+  }
+  .sample-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #9a8e82; margin-bottom: 7px;
+  }
+
+  /* ── 01 CURRENT: Editorial Serif — Cormorant Garamond + Montserrat ── */
+  .o1-h { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; line-height:1.15; color:#08121A; }
+  .o1-s { font-family:'Montserrat',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o1-b { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:300; line-height:1.7; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 02 SLAB HERITAGE: Zilla Slab + Jost ── */
+  .o2-h { font-family:'Zilla Slab',serif; font-size:36px; font-weight:300; line-height:1.2; color:#08121A; }
+  .o2-s { font-family:'Jost',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o2-b { font-family:'Jost',sans-serif; font-size:13px; font-weight:300; line-height:1.7; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 03 ALL-SANS MINIMAL: Jost + Inter ── */
+  .o3-h { font-family:'Jost',sans-serif; font-size:34px; font-weight:200; letter-spacing:0.08em; line-height:1.25; color:#08121A; }
+  .o3-s { font-family:'Jost',sans-serif; font-size:9px; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o3-b { font-family:'Inter',sans-serif; font-size:12px; font-weight:300; line-height:1.75; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 04 CONDENSED EDITORIAL: Barlow Condensed + EB Garamond ── */
+  .o4-h { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:300; letter-spacing:0.04em; line-height:1.05; color:#08121A; text-transform:uppercase; }
+  .o4-s { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o4-b { font-family:'EB Garamond',serif; font-size:14px; font-weight:400; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 05 SCRIPT ACCENT: Cormorant + Pinyon Script labels + Montserrat body ── */
+  .o5-h { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; line-height:1.15; color:#08121A; }
+  .o5-s { font-family:'Pinyon Script',cursive; font-size:22px; font-weight:400; letter-spacing:0.02em; color:#5C4A32; margin-top:8px; }
+  .o5-b { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:300; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 06 BOLD MAGAZINE: Abril Fatface + Lato ── */
+  .o6-h { font-family:'Abril Fatface',serif; font-size:40px; font-weight:400; line-height:1.1; color:#08121A; }
+  .o6-s { font-family:'Lato',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o6-b { font-family:'Lato',sans-serif; font-size:12.5px; font-weight:300; line-height:1.7; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 07 HUMANIST WARMTH: Lora + Nunito Sans ── */
+  .o7-h { font-family:'Lora',serif; font-size:36px; font-weight:400; line-height:1.2; color:#08121A; }
+  .o7-s { font-family:'Nunito Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o7-b { font-family:'Nunito Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 08 ART DECO: Poiret One + Raleway ── */
+  .o8-h { font-family:'Poiret One',sans-serif; font-size:40px; font-weight:400; letter-spacing:0.06em; line-height:1.15; color:#08121A; }
+  .o8-s { font-family:'Raleway',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o8-b { font-family:'Raleway',sans-serif; font-size:12px; font-weight:300; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 09 SMALL CAPS ELEGANCE: Playfair Display SC + Source Sans 3 ── */
+  .o9-h { font-family:'Playfair Display SC',serif; font-size:32px; font-weight:400; letter-spacing:0.04em; line-height:1.2; color:#08121A; }
+  .o9-s { font-family:'Source Sans 3',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o9-b { font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:300; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 10 CALLIGRAPHIC: Cormorant Infant Italic + Josefin Sans ── */
+  .o10-h { font-family:'Cormorant Infant',serif; font-size:44px; font-weight:300; font-style:italic; line-height:1.12; color:#08121A; }
+  .o10-s { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o10-b { font-family:'Josefin Sans',sans-serif; font-size:12px; font-weight:300; line-height:1.75; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 11 MODERNIST REVERSE: Bebas Neue headlines + EB Garamond body ── */
+  .o11-h { font-family:'Bebas Neue',sans-serif; font-size:52px; font-weight:400; letter-spacing:0.08em; line-height:1.0; color:#08121A; }
+  .o11-s { font-family:'Bebas Neue',sans-serif; font-size:14px; font-weight:400; letter-spacing:0.2em; color:#08121A; margin-top:10px; }
+  .o11-b { font-family:'EB Garamond',serif; font-size:14px; font-weight:400; line-height:1.75; color:#2a2a2a; margin-top:12px; }
+
+  /* ── 12 PRESS HERITAGE: Arvo + Montserrat ── */
+  .o12-h { font-family:'Arvo',serif; font-size:32px; font-weight:400; line-height:1.2; color:#08121A; }
+  .o12-s { font-family:'Montserrat',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#08121A; margin-top:10px; }
+  .o12-b { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:300; line-height:1.72; color:#2a2a2a; margin-top:12px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="brand">Provenance</div>
+  <h1>Typography Options</h1>
+  <p>For review only — not yet implemented. 12 distinct directions, not just font swaps.</p>
+</div>
+
+<div class="options-grid">
+
+  <!-- 01 -->
+  <div class="option-card">
+    <div class="option-number">01</div>
+    <div class="direction-tag">Editorial Serif</div>
+    <div class="font-labels">
+      <span class="chip">Cormorant Garamond</span>
+      <span class="chip secondary">Montserrat</span>
+      <span class="current-tag">Current</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o1-h">Crafted with intention.</div>
+    <div class="o1-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o1-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 02 -->
+  <div class="option-card">
+    <div class="option-number">02</div>
+    <div class="direction-tag">Slab Heritage</div>
+    <div class="font-labels">
+      <span class="chip">Zilla Slab</span>
+      <span class="chip secondary">Jost</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o2-h">Crafted with intention.</div>
+    <div class="o2-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o2-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 03 -->
+  <div class="option-card">
+    <div class="option-number">03</div>
+    <div class="direction-tag">All-Sans Minimal</div>
+    <div class="font-labels">
+      <span class="chip">Jost</span>
+      <span class="chip secondary">Inter</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o3-h">Crafted with intention.</div>
+    <div class="o3-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o3-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 04 -->
+  <div class="option-card">
+    <div class="option-number">04</div>
+    <div class="direction-tag">Condensed Editorial</div>
+    <div class="font-labels">
+      <span class="chip">Barlow Condensed</span>
+      <span class="chip secondary">EB Garamond</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o4-h">Crafted with intention.</div>
+    <div class="o4-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o4-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 05 -->
+  <div class="option-card">
+    <div class="option-number">05</div>
+    <div class="direction-tag">Script Accent</div>
+    <div class="font-labels">
+      <span class="chip">Cormorant Garamond</span>
+      <span class="chip accent">Pinyon Script</span>
+      <span class="chip secondary">Montserrat</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o5-h">Crafted with intention.</div>
+    <div class="o5-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o5-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 06 -->
+  <div class="option-card">
+    <div class="option-number">06</div>
+    <div class="direction-tag">Bold Magazine</div>
+    <div class="font-labels">
+      <span class="chip">Abril Fatface</span>
+      <span class="chip secondary">Lato</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o6-h">Crafted with intention.</div>
+    <div class="o6-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o6-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 07 -->
+  <div class="option-card">
+    <div class="option-number">07</div>
+    <div class="direction-tag">Humanist Warmth</div>
+    <div class="font-labels">
+      <span class="chip">Lora</span>
+      <span class="chip secondary">Nunito Sans</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o7-h">Crafted with intention.</div>
+    <div class="o7-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o7-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 08 -->
+  <div class="option-card">
+    <div class="option-number">08</div>
+    <div class="direction-tag">Art Deco</div>
+    <div class="font-labels">
+      <span class="chip">Poiret One</span>
+      <span class="chip secondary">Raleway</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o8-h">Crafted with intention.</div>
+    <div class="o8-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o8-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 09 -->
+  <div class="option-card">
+    <div class="option-number">09</div>
+    <div class="direction-tag">Small Caps Elegance</div>
+    <div class="font-labels">
+      <span class="chip">Playfair Display SC</span>
+      <span class="chip secondary">Source Sans 3</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o9-h">Crafted with Intention.</div>
+    <div class="o9-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o9-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="option-card">
+    <div class="option-number">10</div>
+    <div class="direction-tag">Calligraphic</div>
+    <div class="font-labels">
+      <span class="chip">Cormorant Infant Italic</span>
+      <span class="chip secondary">Josefin Sans</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o10-h">Crafted with intention.</div>
+    <div class="o10-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o10-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="option-card">
+    <div class="option-number">11</div>
+    <div class="direction-tag">Modernist Reverse</div>
+    <div class="font-labels">
+      <span class="chip">Bebas Neue</span>
+      <span class="chip secondary">EB Garamond</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o11-h">Crafted with intention.</div>
+    <div class="o11-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o11-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="option-card">
+    <div class="option-number">12</div>
+    <div class="direction-tag">Press Heritage</div>
+    <div class="font-labels">
+      <span class="chip">Arvo</span>
+      <span class="chip secondary">Montserrat</span>
+    </div>
+    <div class="sample-label">Headline</div>
+    <div class="o12-h">Crafted with intention.</div>
+    <div class="o12-s">Artisan · Provenance · Est. 2024</div>
+    <hr class="sample-divider">
+    <div class="sample-label">Body</div>
+    <div class="o12-b">Every piece begins with the right materials and ends with something worth keeping. Quality without compromise — built to last.</div>
+  </div>
+
+</div>
+</body>
+</html>

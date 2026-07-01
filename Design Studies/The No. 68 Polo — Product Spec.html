@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The No. 68 Polo — Product Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#08121A;--cream:#FAF1E5;--gold:#C4973A;
+  --muted:#6B5F53;--rule:#D9C9B0;--mid:#EFE2CC;
+  --amber:#C8823A;--buff:#E8C98A;
+}
+body{background:var(--cream);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:300;line-height:1.7;}
+
+/* HEADER */
+.hdr{padding:44px 60px 30px;border-bottom:1px solid var(--navy);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;}
+.hdr-eyebrow{font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.hdr-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1.05;}
+.hdr-title em{font-style:italic;color:var(--gold);}
+.hdr-sub{font-size:9px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:10px;}
+.hdr-meta{font-size:8px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:2.2;border-left:1px solid var(--rule);padding-left:24px;}
+
+/* BODY LAYOUT */
+.wrap{padding:48px 60px;}
+
+/* HERO SECTION */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:64px;border:0.5px solid var(--rule);}
+.polo-views{padding:40px 32px;background:#F2E8D8;display:flex;gap:40px;justify-content:center;align-items:flex-end;border-right:0.5px solid var(--rule);}
+.polo-label{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:12px;}
+.callouts{padding:32px 28px;}
+.callout-head{font-size:8px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.callout-item{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;padding:12px 0;border-bottom:0.5px solid var(--rule);}
+.callout-item:last-child{border-bottom:none;}
+.callout-num{width:18px;height:18px;border-radius:50%;background:var(--navy);color:var(--cream);font-size:8px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.callout-title{font-size:10px;font-weight:500;margin-bottom:3px;}
+.callout-text{font-size:10px;font-weight:300;line-height:1.75;color:var(--muted);}
+
+/* INTERIOR SECTION */
+.interior-section{margin-bottom:64px;}
+.sec-label{font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+hr.sec-rule{border:none;border-top:0.5px solid var(--navy);margin-bottom:28px;}
+h2.sec-head{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;margin-bottom:8px;}
+.interior-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:0.5px solid var(--rule);}
+.int-panel{padding:28px;border-right:0.5px solid var(--rule);}
+.int-panel:last-child{border-right:none;}
+.int-panel-label{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.int-panel-note{font-size:10px;font-weight:300;line-height:1.8;color:var(--navy);margin-top:12px;}
+canvas{display:block;width:100%;}
+
+/* BADGE DISPLAY */
+.badge-section{display:flex;gap:40px;align-items:flex-start;margin-bottom:64px;}
+.badge-visual{flex:0 0 auto;}
+.badge-text{flex:1;}
+.badge-text p{font-size:10.5px;font-weight:300;line-height:1.85;color:var(--muted);margin-bottom:12px;}
+.badge-text p span{color:var(--navy);font-weight:400;}
+
+/* SPEC TABLE */
+.spec-table{width:100%;border-collapse:collapse;margin-bottom:64px;}
+.spec-table th{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--navy);text-align:left;}
+.spec-table td{font-size:10.5px;font-weight:300;padding:13px 14px;border-bottom:0.5px solid var(--rule);color:var(--navy);vertical-align:top;}
+.spec-table td:first-child{font-weight:500;white-space:nowrap;width:180px;}
+.spec-table td em{font-style:italic;color:var(--gold);}
+
+/* COLOR CHIPS */
+.color-row{display:flex;gap:16px;margin-bottom:64px;}
+.color-chip{flex:1;}
+.chip-swatch{height:52px;border:0.5px solid rgba(8,18,26,0.12);}
+.chip-label{font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px;}
+.chip-sub{font-size:9px;font-weight:300;color:var(--muted);}
+
+/* REFERENCE SECTION */
+.reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--rule);margin-bottom:64px;}
+.ref-panel{padding:28px;border-right:0.5px solid var(--rule);}
+.ref-panel:last-child{border-right:none;}
+.ref-panel-title{font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.ref-panel p{font-size:10.5px;font-weight:300;line-height:1.85;color:var(--navy);}
+
+/* FOOTER */
+footer{padding:18px 60px;border-top:1px solid var(--navy);display:flex;justify-content:space-between;font-size:8px;font-weight:300;color:var(--muted);letter-spacing:0.1em;}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div>
+    <div class="hdr-eyebrow">Provenance  ·  Product Development  ·  Season 1</div>
+    <h1 class="hdr-title">The No. <em>68</em> Polo</h1>
+    <p class="hdr-sub">Design specification  ·  First draft  ·  Not for production</p>
+  </div>
+  <div class="hdr-meta">
+    SKU: PRV-PL-68<br>
+    Category: Tops<br>
+    Fit: Classic trim<br>
+    Season: All-season<br>
+    Status: Concept
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="polo-views">
+      <div>
+        <svg id="polo-front" viewBox="0 0 200 240" width="170" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="polo-label">Front</div>
+      </div>
+      <div>
+        <svg id="polo-back" viewBox="0 0 200 240" width="170" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="polo-label">Back</div>
+      </div>
+    </div>
+    <div class="callouts">
+      <div class="callout-head">Design Details</div>
+
+      <div class="callout-item">
+        <div class="callout-num">1</div>
+        <div>
+          <div class="callout-title">1968 Border Collar</div>
+          <div class="callout-text">Two-ply ribbed collar woven in the 1968 mark pattern — amber/gold marks on buff ground. 3.5cm spread. This is the primary statement of the design language.</div>
+        </div>
+      </div>
+
+      <div class="callout-item">
+        <div class="callout-num">2</div>
+        <div>
+          <div class="callout-title">Patterned Placket Tape</div>
+          <div class="callout-text">3-button placket faced with matching 1968 border tape. Horn buttons, natural ecru. Placket tape width: 2.8cm.</div>
+        </div>
+      </div>
+
+      <div class="callout-item">
+        <div class="callout-num">3</div>
+        <div>
+          <div class="callout-title">Embroidered P Mark</div>
+          <div class="callout-text">Provenance P mark embroidered at left chest, 2.5cm. Navy thread on cream ground. Flat chain stitch, no fill — outline only for lightness.</div>
+        </div>
+      </div>
+
+      <div class="callout-item">
+        <div class="callout-num">4</div>
+        <div>
+          <div class="callout-title">No. 68 Back Badge</div>
+          <div class="callout-text">Center back, at base of collar. Woven label in 1968 card-number format — a rounded rectangle enclosing "68" in cream on navy. 2.2cm × 1.6cm.</div>
+        </div>
+      </div>
+
+      <div class="callout-item">
+        <div class="callout-num">5</div>
+        <div>
+          <div class="callout-title">Interior — Amber Pattern</div>
+          <div class="callout-text">Interior collar tape and care label carrier in the amber/buff 1968 texture — the exact feel of the card back. Seen only by the wearer.</div>
+        </div>
+      </div>
+
+      <div class="callout-item">
+        <div class="callout-num">6</div>
+        <div>
+          <div class="callout-title">Body Fabric</div>
+          <div class="callout-text">Cream (#FAF1E5) Supima cotton / TENCEL™ piqué. 210 GSM. Enzyme-washed for softness. No optical brighteners — maintains natural warmth of cream tone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERIOR DETAIL -->
+  <div class="interior-section">
+    <div class="sec-label">Interior Detail</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">What the wearer sees</h2>
+
+    <div class="interior-grid">
+      <div class="int-panel">
+        <div class="int-panel-label">Collar Tape — Interior Face</div>
+        <canvas id="c-collar" height="110"></canvas>
+        <div class="int-panel-note">Narrow woven tape bonded to inside face of collar. The amber/buff 1968 pattern — a direct reference to the card back. Width: 12mm. Jacquard woven.</div>
+      </div>
+      <div class="int-panel">
+        <div class="int-panel-label">Care Label Carrier + Woven Brand Label</div>
+        <canvas id="c-label-int" height="110"></canvas>
+        <div class="int-panel-note">The brand label sits on a carrier printed in the amber texture. Provenance wordmark in navy on cream — the P mark pattern as the field behind it. Interior centrepiece of the garment.</div>
+      </div>
+      <div class="int-panel">
+        <div class="int-panel-label">Placket Lining — Interior</div>
+        <canvas id="c-placket-int" height="110"></canvas>
+        <div class="int-panel-note">The inside face of the button placket is lined with the cream-on-navy 1968 pattern — a finer scale than the collar, seen when the buttons are open. A discovery detail.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO. 68 BADGE STUDY -->
+  <div class="interior-section">
+    <div class="sec-label">Back Detail Study</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">The No. 68 reference</h2>
+
+    <div class="badge-section">
+      <div class="badge-visual">
+        <svg id="badge-study" viewBox="0 0 280 140" width="280" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="badge-text">
+        <p>The center back detail takes the <span>card number badge format</span> from the 1968 set and renders it as a small woven label at the base of the back collar. "68" in cream numerals on a navy field, enclosed in a rounded rectangle with a fine cream border — mirroring the proportion and layout of the original card number.</p>
+        <p>The reference is <span>intimate and specific</span>. It will not read as a sports reference to most viewers. To someone who knows the 1968 set, it is a direct quotation. To everyone else, it is a clean, elegant number detail — a finishing mark, like a hallmark on silver.</p>
+        <p>Placement: center back, 1.5cm below collar seam. Woven label, not embroidered. Size: 2.2cm wide × 1.6cm tall. Colorway: cream on navy, with fine cream border thread.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIAL SPEC -->
+  <div class="interior-section">
+    <div class="sec-label">Material Specification</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">Fabric &amp; construction</h2>
+
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Specification</th>
+          <th>Reference / Benchmark</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Body Fabric</td>
+          <td>Supima cotton 85% / TENCEL™ 15% piqué. 210 GSM. Two-ply. Enzyme washed, garment finished.</td>
+          <td><em>Benchmark: Peter Millar Crown Sport piqué. Hand: soft, substantial, no sheen.</em></td>
+        </tr>
+        <tr>
+          <td>Collar + Cuffs</td>
+          <td>Jacquard-woven 1968 mark pattern in amber (#C8823A) on buff ground (#E8C98A). Cotton/polyester blend for stability. 2×1 rib base with pattern woven in face.</td>
+          <td><em>Custom fabric. Requires jacquard loom. Min. run: ~500m. Collar: 3.5cm spread. Cuffs: 2.5cm.</em></td>
+        </tr>
+        <tr>
+          <td>Placket Tape</td>
+          <td>Woven tape in matching 1968 pattern. Bonded and stitched. Width: 2.8cm. 3 buttons, spaced at 4.5cm intervals.</td>
+          <td><em>Same jacquard weave as collar. One fabric, two applications. Reduces tooling cost.</em></td>
+        </tr>
+        <tr>
+          <td>Buttons</td>
+          <td>Natural horn, ecru. 18L (11mm). Flat 4-hole. Matte finish.</td>
+          <td><em>No plastic. Horn picks up cream tone of body. Benchmark: Gitman Bros., Peter Millar linen shirts.</em></td>
+        </tr>
+        <tr>
+          <td>Interior Collar Tape</td>
+          <td>Printed woven tape, amber/buff 1968 texture. 12mm width. Heat-bonded, then topstitched in matching thread. Single-needle.</td>
+          <td><em>Screen print on twill tape, or digital print on satin tape. Budget: printed. Premium: narrow jacquard.</em></td>
+        </tr>
+        <tr>
+          <td>Brand Label</td>
+          <td>Woven label, 4cm × 2.5cm. Provenance wordmark in navy on cream with pattern field. Centred, fold-under, sewn 3 sides.</td>
+          <td><em>Jacquard woven label. Standard lead time: 6–8 weeks.</em></td>
+        </tr>
+        <tr>
+          <td>No. 68 Back Badge</td>
+          <td>Woven label, 2.2cm × 1.6cm. "68" in Cormorant Garamond 300 numerals, cream on navy, fine cream border. Center back, base of collar.</td>
+          <td><em>Woven or printed label. Discuss with label supplier — minimum at this size requires fine weave count.</em></td>
+        </tr>
+        <tr>
+          <td>P Mark Embroidery</td>
+          <td>Left chest, 2.5cm height. Navy thread (Madeira: Polyneon 40 #1855 or match to #08121A). Chain stitch outline only. No fill. Density: 45°.</td>
+          <td><em>Digitize from SVG. Outline-only reads more refined than filled embroidery at small scale.</em></td>
+        </tr>
+        <tr>
+          <td>Seam Finish</td>
+          <td>French seam on side seams. Flat-felled on shoulder seams. Single-needle throughout.</td>
+          <td><em>Peter Millar / Polo Ralph Lauren standard. No overlocked raw seams visible interior.</em></td>
+        </tr>
+        <tr>
+          <td>Fit</td>
+          <td>Classic trim. Chest: 2.5cm ease over athletic fit. Hem: straight, 2cm below trouser waistband. Not a performance athletic cut — shaped but not compression.</td>
+          <td><em>Benchmark: Peter Millar Seaside Polo, not Rhoback. Wearable from course to dinner.</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COLOR -->
+  <div class="interior-section">
+    <div class="sec-label">Colorway</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head" style="margin-bottom:28px;">Season 1 — Original colorway</h2>
+    <div class="color-row">
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#FAF1E5;"></div>
+        <div class="chip-label">Cream</div>
+        <div class="chip-sub">#FAF1E5  ·  Body</div>
+        <div class="chip-sub">PMS 9121 C</div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#E8C98A;"></div>
+        <div class="chip-label">Buff</div>
+        <div class="chip-sub">#E8C98A  ·  Pattern ground</div>
+        <div class="chip-sub">PMS 7506 C</div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#C8823A;"></div>
+        <div class="chip-label">Amber</div>
+        <div class="chip-sub">#C8823A  ·  Pattern marks</div>
+        <div class="chip-sub">PMS 7575 C</div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#08121A;"></div>
+        <div class="chip-label">Navy</div>
+        <div class="chip-sub">#08121A  ·  Logo / badge</div>
+        <div class="chip-sub">PMS 2381 C</div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#C4973A;"></div>
+        <div class="chip-label">Gold</div>
+        <div class="chip-sub">#C4973A  ·  Accent (thread)</div>
+        <div class="chip-sub">PMS 871 C</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN RATIONALE -->
+  <div class="reference-grid">
+    <div class="ref-panel">
+      <div class="ref-panel-title">What the design says</div>
+      <p>The No. 68 polo is a provenance object. Every detail is traceable — the border pattern to a specific print run, the number to a specific set, the fabric to a specific cotton variety. Nothing is arbitrary. This is the opposite of logo-driven luxury: it rewards knowledge rather than recognition. The person wearing it knows what it means. Most viewers will not. That asymmetry is the point.</p>
+    </div>
+    <div class="ref-panel">
+      <div class="ref-panel-title">What the design does not say</div>
+      <p>This is not a baseball polo. No team colors, no diamond motifs, no sport iconography. The 1968 reference is structural — drawn from the design language of the era, not its content. The collar pattern could as easily reference a vintage fabric sample card or a wallpaper record. The number 68 is not a jersey number. The design holds without explanation.</p>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <span>Provenance  ·  Product Development  ·  The No. 68 Polo  ·  Season 1 Concept</span>
+  <span>Internal use only  ·  Not for distribution</span>
+</footer>
+
+<script>
+function seededRnd(seed){let s=seed;return function(){s=(s*9301+49297)%233280;return s/233280;};}
+function roundRect(ctx,x,y,w,h,r){if(r>w/2)r=w/2;if(r>h/2)r=h/2;ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+
+function fillPattern(ctx,x,y,w,h,bg,mark,cols,rows,seed,dev,aR,mAlpha){
+  const r=seededRnd(seed);const cw=w/cols;const ch=h/rows;
+  ctx.fillStyle=bg;ctx.fillRect(x,y,w,h);
+  for(let row=0;row<rows;row++){for(let col=0;col<cols;col++){
+    const cx=x+(col+0.5)*cw+(r()-0.5)*2*dev*cw;
+    const cy=y+(row+0.5)*ch+(r()-0.5)*2*dev*ch;
+    const mw=cw*0.62*(0.88+r()*0.24);const mh=ch*0.28*(0.88+r()*0.24);
+    const angle=(r()-0.5)*2*aR*Math.PI/180;
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
+    ctx.globalAlpha=mAlpha*(0.75+r()*0.3);ctx.fillStyle=mark;
+    roundRect(ctx,-mw/2,-mh/2,mw,mh,mh*0.35);ctx.fill();
+    ctx.restore();
+  }}
+  ctx.globalAlpha=1;
+}
+
+function setupCanvas(canvas){
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth||canvas.clientWidth||300;
+  const H=parseInt(canvas.getAttribute('height'))||160;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  return{ctx,W,H};
+}
+
+/* ── POLO FRONT SVG ─────────────────────────────────────────────────── */
+function buildPoloFront(){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('polo-front');
+
+  // Defs: pattern fill for collar/placket
+  const defs=document.createElementNS(ns,'defs');
+
+  // Amber pattern
+  const pat=document.createElementNS(ns,'pattern');
+  pat.setAttribute('id','pfp-amber');pat.setAttribute('x','0');pat.setAttribute('y','0');
+  pat.setAttribute('width','14');pat.setAttribute('height','8');pat.setAttribute('patternUnits','userSpaceOnUse');
+  const rects=[
+    [1,2.5,9,2.2,3,0.82,'#C8823A'],
+    [1,2.4,9,2.2,3,0.82,'#C8823A'],
+  ];
+  // Add marks to pattern
+  const angles=[3,-2,4,-3,2];
+  for(let i=0;i<3;i++){for(let j=0;j<2;j++){
+    const r=document.createElementNS(ns,'rect');
+    const mx=1+i*4.5,my=2+j*4;
+    r.setAttribute('x',mx);r.setAttribute('y',my);r.setAttribute('width',8.5);r.setAttribute('height',2.2);r.setAttribute('rx','0.7');
+    r.setAttribute('fill','#C8823A');r.setAttribute('opacity','0.82');
+    r.setAttribute('transform',`rotate(${angles[(i+j*2)%5]},${mx+4.25},${my+1.1})`);
+    pat.appendChild(r);
+  }}
+  defs.appendChild(pat);
+
+  // Clip path for collar shape
+  const cl=document.createElementNS(ns,'clipPath');cl.setAttribute('id','collar-clip-front');
+  const cp=document.createElementNS(ns,'path');
+  cp.setAttribute('d','M 62 54 L 82 54 C 90 60 98 78 100 90 C 102 78 110 60 118 54 L 138 54 L 145 40 L 120 38 C 112 44 106 56 100 68 C 94 56 88 44 80 38 L 55 40 Z');
+  cl.appendChild(cp);defs.appendChild(cl);
+  svg.appendChild(defs);
+
+  // BODY
+  const body=document.createElementNS(ns,'path');
+  body.setAttribute('d','M 35 95 L 25 238 L 175 238 L 165 95 L 150 56 L 118 54 C 110 66 104 78 100 90 C 96 78 90 66 82 54 L 50 56 Z');
+  body.setAttribute('fill','#FAF1E5');body.setAttribute('stroke','#08121A');body.setAttribute('stroke-width','1.2');
+  svg.appendChild(body);
+
+  // LEFT SLEEVE
+  const lSleeve=document.createElementNS(ns,'path');
+  lSleeve.setAttribute('d','M 50 56 L 35 95 L 5 82 L 15 46 Z');
+  lSleeve.setAttribute('fill','#FAF1E5');lSleeve.setAttribute('stroke','#08121A');lSleeve.setAttribute('stroke-width','1.2');
+  svg.appendChild(lSleeve);
+
+  // RIGHT SLEEVE
+  const rSleeve=document.createElementNS(ns,'path');
+  rSleeve.setAttribute('d','M 150 56 L 165 95 L 195 82 L 185 46 Z');
+  rSleeve.setAttribute('fill','#FAF1E5');rSleeve.setAttribute('stroke','#08121A');rSleeve.setAttribute('stroke-width','1.2');
+  svg.appendChild(rSleeve);
+
+  // COLLAR FILL (amber pattern)
+  const collarFill=document.createElementNS(ns,'path');
+  collarFill.setAttribute('d','M 62 54 L 82 54 C 90 60 98 78 100 90 C 102 78 110 60 118 54 L 138 54 L 145 40 L 120 38 C 112 44 106 56 100 68 C 94 56 88 44 80 38 L 55 40 Z');
+  collarFill.setAttribute('fill','url(#pfp-amber)');
+  collarFill.setAttribute('stroke','#08121A');collarFill.setAttribute('stroke-width','0.8');
+  svg.appendChild(collarFill);
+
+  // PLACKET FILL (amber pattern strip)
+  const placket=document.createElementNS(ns,'rect');
+  placket.setAttribute('x','94.5');placket.setAttribute('y','90');placket.setAttribute('width','11');placket.setAttribute('height','148');
+  placket.setAttribute('fill','url(#pfp-amber)');placket.setAttribute('stroke','#08121A');placket.setAttribute('stroke-width','0.6');
+  svg.appendChild(placket);
+
+  // BUTTONS
+  [116, 136, 156].forEach(y=>{
+    const btn=document.createElementNS(ns,'circle');
+    btn.setAttribute('cx','100');btn.setAttribute('cy',y);btn.setAttribute('r','3.5');
+    btn.setAttribute('fill','#E8D8B8');btn.setAttribute('stroke','#8B7040');btn.setAttribute('stroke-width','0.8');
+    svg.appendChild(btn);
+    const btn2=document.createElementNS(ns,'circle');
+    btn2.setAttribute('cx','100');btn2.setAttribute('cy',y);btn2.setAttribute('r','1.5');
+    btn2.setAttribute('fill','none');btn2.setAttribute('stroke','#8B7040');btn2.setAttribute('stroke-width','0.5');
+    svg.appendChild(btn2);
+  });
+
+  // P MARK (chest, left side)
+  const pGroup=document.createElementNS(ns,'g');
+  pGroup.setAttribute('transform','translate(67, 112)');
+
+  // Simple P mark outline (stylized)
+  const pPath=document.createElementNS(ns,'path');
+  pPath.setAttribute('d','M -6 -10 L -6 10 M -6 -10 C -6 -10 2 -10 4 -7 C 6 -4 6 -2 4 1 C 2 4 -3 4 -6 4');
+  pPath.setAttribute('stroke','#08121A');pPath.setAttribute('stroke-width','1.6');
+  pPath.setAttribute('fill','none');pPath.setAttribute('stroke-linecap','round');
+  pGroup.appendChild(pPath);
+  // Underline mark
+  const pLine=document.createElementNS(ns,'line');
+  pLine.setAttribute('x1','-7');pLine.setAttribute('y1','12');pLine.setAttribute('x2','5');pLine.setAttribute('y2','12');
+  pLine.setAttribute('stroke','#08121A');pLine.setAttribute('stroke-width','0.7');
+  pGroup.appendChild(pLine);
+  svg.appendChild(pGroup);
+
+  // Callout circles
+  const callouts=[
+    {x:100,y:46,n:'1'},{x:100,y:130,n:'2'},{x:67,y:112,n:'3'},
+  ];
+  callouts.forEach(c=>{
+    const circ=document.createElementNS(ns,'circle');
+    const offsetX=c.n==='1'?-30:c.n==='2'?28:22;
+    const offsetY=c.n==='3'?-18:0;
+    const cx2=c.x+offsetX,cy2=c.y+offsetY;
+    // Line
+    const ln=document.createElementNS(ns,'line');
+    ln.setAttribute('x1',c.x);ln.setAttribute('y1',c.y);ln.setAttribute('x2',cx2);ln.setAttribute('y2',cy2);
+    ln.setAttribute('stroke','#08121A');ln.setAttribute('stroke-width','0.5');ln.setAttribute('stroke-dasharray','2,2');
+    svg.appendChild(ln);
+    const bg=document.createElementNS(ns,'circle');
+    bg.setAttribute('cx',cx2);bg.setAttribute('cy',cy2);bg.setAttribute('r','7');bg.setAttribute('fill','#08121A');
+    svg.appendChild(bg);
+    const t=document.createElementNS(ns,'text');
+    t.setAttribute('x',cx2);t.setAttribute('y',cy2+3.5);t.setAttribute('text-anchor','middle');
+    t.setAttribute('fill','#FAF1E5');t.setAttribute('font-size','7');t.setAttribute('font-family','Montserrat,sans-serif');t.setAttribute('font-weight','600');
+    t.textContent=c.n;
+    svg.appendChild(t);
+  });
+}
+
+/* ── POLO BACK SVG ──────────────────────────────────────────────────── */
+function buildPoloBack(){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('polo-back');
+
+  const defs=document.createElementNS(ns,'defs');
+  const pat=document.createElementNS(ns,'pattern');
+  pat.setAttribute('id','pbp-amber');pat.setAttribute('x','0');pat.setAttribute('y','0');
+  pat.setAttribute('width','14');pat.setAttribute('height','8');pat.setAttribute('patternUnits','userSpaceOnUse');
+  const angles=[-2,4,-3,3,-1];
+  for(let i=0;i<3;i++){for(let j=0;j<2;j++){
+    const r=document.createElementNS(ns,'rect');
+    const mx=0.5+i*4.5,my=2+j*4;
+    r.setAttribute('x',mx);r.setAttribute('y',my);r.setAttribute('width',8.8);r.setAttribute('height',2.2);r.setAttribute('rx','0.7');
+    r.setAttribute('fill','#C8823A');r.setAttribute('opacity','0.82');
+    r.setAttribute('transform',`rotate(${angles[(i+j*2)%5]},${mx+4.4},${my+1.1})`);
+    pat.appendChild(r);
+  }}
+  defs.appendChild(pat);svg.appendChild(defs);
+
+  // BODY
+  const body=document.createElementNS(ns,'path');
+  body.setAttribute('d','M 35 95 L 25 238 L 175 238 L 165 95 L 150 56 L 120 40 L 80 40 L 50 56 Z');
+  body.setAttribute('fill','#FAF1E5');body.setAttribute('stroke','#08121A');body.setAttribute('stroke-width','1.2');
+  svg.appendChild(body);
+
+  // LEFT SLEEVE
+  const lSleeve=document.createElementNS(ns,'path');
+  lSleeve.setAttribute('d','M 50 56 L 35 95 L 5 82 L 15 46 Z');
+  lSleeve.setAttribute('fill','#FAF1E5');lSleeve.setAttribute('stroke','#08121A');lSleeve.setAttribute('stroke-width','1.2');
+  svg.appendChild(lSleeve);
+
+  // RIGHT SLEEVE
+  const rSleeve=document.createElementNS(ns,'path');
+  rSleeve.setAttribute('d','M 150 56 L 165 95 L 195 82 L 185 46 Z');
+  rSleeve.setAttribute('fill','#FAF1E5');rSleeve.setAttribute('stroke','#08121A');rSleeve.setAttribute('stroke-width','1.2');
+  svg.appendChild(rSleeve);
+
+  // COLLAR BACK (amber pattern strip at top back)
+  const collarBack=document.createElementNS(ns,'path');
+  collarBack.setAttribute('d','M 80 40 L 120 40 L 125 56 L 75 56 Z');
+  collarBack.setAttribute('fill','url(#pbp-amber)');collarBack.setAttribute('stroke','#08121A');collarBack.setAttribute('stroke-width','0.8');
+  svg.appendChild(collarBack);
+
+  // NO. 68 BADGE
+  const badgeG=document.createElementNS(ns,'g');
+  badgeG.setAttribute('transform','translate(100, 70)');
+
+  const badgeBg=document.createElementNS(ns,'rect');
+  badgeBg.setAttribute('x','-14');badgeBg.setAttribute('y','-9');badgeBg.setAttribute('width','28');badgeBg.setAttribute('height','18');badgeBg.setAttribute('rx','3.5');
+  badgeBg.setAttribute('fill','#08121A');
+  badgeG.appendChild(badgeBg);
+
+  const badgeBorder=document.createElementNS(ns,'rect');
+  badgeBorder.setAttribute('x','-12');badgeBorder.setAttribute('y','-7');badgeBorder.setAttribute('width','24');badgeBorder.setAttribute('height','14');badgeBorder.setAttribute('rx','2');
+  badgeBorder.setAttribute('fill','none');badgeBorder.setAttribute('stroke','#FAF1E5');badgeBorder.setAttribute('stroke-width','0.6');
+  badgeG.appendChild(badgeBorder);
+
+  const badgeText=document.createElementNS(ns,'text');
+  badgeText.setAttribute('x','0');badgeText.setAttribute('y','4.5');badgeText.setAttribute('text-anchor','middle');
+  badgeText.setAttribute('fill','#FAF1E5');badgeText.setAttribute('font-size','11');
+  badgeText.setAttribute('font-family','Cormorant Garamond,serif');badgeText.setAttribute('font-weight','300');
+  badgeText.textContent='68';
+  badgeG.appendChild(badgeText);
+  svg.appendChild(badgeG);
+
+  // Callout for badge
+  const ln=document.createElementNS(ns,'line');
+  ln.setAttribute('x1','118');ln.setAttribute('y1','70');ln.setAttribute('x2','150');ln.setAttribute('y2','70');
+  ln.setAttribute('stroke','#08121A');ln.setAttribute('stroke-width','0.5');ln.setAttribute('stroke-dasharray','2,2');
+  svg.appendChild(ln);
+  const bg=document.createElementNS(ns,'circle');
+  bg.setAttribute('cx','157');bg.setAttribute('cy','70');bg.setAttribute('r','7');bg.setAttribute('fill','#08121A');
+  svg.appendChild(bg);
+  const t=document.createElementNS(ns,'text');
+  t.setAttribute('x','157');t.setAttribute('y','73.5');t.setAttribute('text-anchor','middle');
+  t.setAttribute('fill','#FAF1E5');t.setAttribute('font-size','7');t.setAttribute('font-family','Montserrat,sans-serif');t.setAttribute('font-weight','600');
+  t.textContent='4';
+  svg.appendChild(t);
+
+  // Callout for collar
+  const ln2=document.createElementNS(ns,'line');
+  ln2.setAttribute('x1','125');ln2.setAttribute('y1','48');ln2.setAttribute('x2','155');ln2.setAttribute('y2','40');
+  ln2.setAttribute('stroke','#08121A');ln2.setAttribute('stroke-width','0.5');ln2.setAttribute('stroke-dasharray','2,2');
+  svg.appendChild(ln2);
+  const bg2=document.createElementNS(ns,'circle');
+  bg2.setAttribute('cx','162');bg2.setAttribute('cy','37');bg2.setAttribute('r','7');bg2.setAttribute('fill','#08121A');
+  svg.appendChild(bg2);
+  const t2=document.createElementNS(ns,'text');
+  t2.setAttribute('x','162');t2.setAttribute('y','40.5');t2.setAttribute('text-anchor','middle');
+  t2.setAttribute('fill','#FAF1E5');t2.setAttribute('font-size','7');t2.setAttribute('font-family','Montserrat,sans-serif');t2.setAttribute('font-weight','600');
+  t2.textContent='1';
+  svg.appendChild(t2);
+}
+
+/* ── BADGE STUDY SVG ────────────────────────────────────────────────── */
+function buildBadgeStudy(){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('badge-study');
+
+  const defs=document.createElementNS(ns,'defs');
+
+  // Pattern for fabric context
+  const pat=document.createElementNS(ns,'pattern');
+  pat.setAttribute('id','bsp');pat.setAttribute('x','0');pat.setAttribute('y','0');
+  pat.setAttribute('width','12');pat.setAttribute('height','7');pat.setAttribute('patternUnits','userSpaceOnUse');
+  const angles2=[-2,4,-3,3];
+  for(let i=0;i<2;i++){for(let j=0;j<2;j++){
+    const r=document.createElementNS(ns,'rect');
+    const mx=0.5+i*5.5,my=1.5+j*3.5;
+    r.setAttribute('x',mx);r.setAttribute('y',my);r.setAttribute('width',9);r.setAttribute('height',2);r.setAttribute('rx','0.6');
+    r.setAttribute('fill','#C8823A');r.setAttribute('opacity','0.75');
+    r.setAttribute('transform',`rotate(${angles2[(i+j)%4]},${mx+4.5},${my+1})`);
+    pat.appendChild(r);
+  }}
+  defs.appendChild(pat);svg.appendChild(defs);
+
+  // Labels
+  const labels=[
+    {x:20,text:'Source reference'},
+    {x:110,text:'Back label view'},
+    {x:200,text:'Actual size (+4×)'},
+  ];
+  labels.forEach(l=>{
+    const t=document.createElementNS(ns,'text');
+    t.setAttribute('x',l.x);t.setAttribute('y','18');
+    t.setAttribute('fill','#6B5F53');t.setAttribute('font-size','7.5');
+    t.setAttribute('font-family','Montserrat,sans-serif');t.setAttribute('font-weight','500');
+    t.setAttribute('letter-spacing','1.2');t.textContent=l.text.toUpperCase();
+    svg.appendChild(t);
+  });
+
+  // ── Badge 1: Enlarged reference style badge ──
+  const g1=document.createElementNS(ns,'g');g1.setAttribute('transform','translate(20,30)');
+  const b1=document.createElementNS(ns,'rect');
+  b1.setAttribute('width','68');b1.setAttribute('height','44');b1.setAttribute('rx','6');
+  b1.setAttribute('fill','url(#bsp)');b1.setAttribute('stroke','#08121A');b1.setAttribute('stroke-width','1.2');
+  g1.appendChild(b1);
+  const b1t=document.createElementNS(ns,'text');
+  b1t.setAttribute('x','34');b1t.setAttribute('y','30');b1t.setAttribute('text-anchor','middle');
+  b1t.setAttribute('fill','#FAF1E5');b1t.setAttribute('font-size','22');
+  b1t.setAttribute('font-family','Cormorant Garamond,serif');b1t.setAttribute('font-weight','300');
+  b1t.textContent='45';
+  g1.appendChild(b1t);
+  svg.appendChild(g1);
+
+  // Arrow
+  const arr=document.createElementNS(ns,'path');
+  arr.setAttribute('d','M 95 52 L 105 52');arr.setAttribute('stroke','#D9C9B0');arr.setAttribute('stroke-width','1');arr.setAttribute('marker-end','none');
+  svg.appendChild(arr);
+  const arrHead=document.createElementNS(ns,'polygon');
+  arrHead.setAttribute('points','104,49 108,52 104,55');arrHead.setAttribute('fill','#D9C9B0');
+  svg.appendChild(arrHead);
+
+  // ── Badge 2: Back of polo label context ──
+  const g2=document.createElementNS(ns,'g');g2.setAttribute('transform','translate(110,30)');
+  // fabric bg
+  const fab=document.createElementNS(ns,'rect');
+  fab.setAttribute('width','68');fab.setAttribute('height','44');fab.setAttribute('rx','0');
+  fab.setAttribute('fill','#FAF1E5');fab.setAttribute('stroke','#D9C9B0');fab.setAttribute('stroke-width','0.5');
+  g2.appendChild(fab);
+  // badge
+  const b2g=document.createElementNS(ns,'g');b2g.setAttribute('transform','translate(18,10)');
+  const b2=document.createElementNS(ns,'rect');
+  b2.setAttribute('x','0');b2.setAttribute('y','0');b2.setAttribute('width','32');b2.setAttribute('height','22');b2.setAttribute('rx','4');
+  b2.setAttribute('fill','#08121A');
+  b2g.appendChild(b2);
+  const b2i=document.createElementNS(ns,'rect');
+  b2i.setAttribute('x','2.5');b2i.setAttribute('y','2.5');b2i.setAttribute('width','27');b2i.setAttribute('height','17');b2i.setAttribute('rx','2');
+  b2i.setAttribute('fill','none');b2i.setAttribute('stroke','#FAF1E5');b2i.setAttribute('stroke-width','0.7');
+  b2g.appendChild(b2i);
+  const b2t=document.createElementNS(ns,'text');
+  b2t.setAttribute('x','16');b2t.setAttribute('y','16');b2t.setAttribute('text-anchor','middle');
+  b2t.setAttribute('fill','#FAF1E5');b2t.setAttribute('font-size','14');
+  b2t.setAttribute('font-family','Cormorant Garamond,serif');b2t.setAttribute('font-weight','300');
+  b2t.textContent='68';
+  b2g.appendChild(b2t);
+  g2.appendChild(b2g);
+  svg.appendChild(g2);
+
+  // ── Badge 3: Actual size (22px × 16px in SVG = 2.2cm × 1.6cm) ──
+  const g3=document.createElementNS(ns,'g');g3.setAttribute('transform','translate(200,30)');
+  const fab3=document.createElementNS(ns,'rect');
+  fab3.setAttribute('width','68');fab3.setAttribute('height','44');fab3.setAttribute('rx','0');
+  fab3.setAttribute('fill','#FAF1E5');fab3.setAttribute('stroke','#D9C9B0');fab3.setAttribute('stroke-width','0.5');
+  g3.appendChild(fab3);
+  // actual size badge — 22×16
+  const b3g=document.createElementNS(ns,'g');b3g.setAttribute('transform','translate(23,14)');
+  const b3=document.createElementNS(ns,'rect');
+  b3.setAttribute('x','0');b3.setAttribute('y','0');b3.setAttribute('width','22');b3.setAttribute('height','16');b3.setAttribute('rx','2.5');
+  b3.setAttribute('fill','#08121A');
+  b3g.appendChild(b3);
+  const b3i=document.createElementNS(ns,'rect');
+  b3i.setAttribute('x','1.5');b3i.setAttribute('y','1.5');b3i.setAttribute('width','19');b3i.setAttribute('height','13');b3i.setAttribute('rx','1.5');
+  b3i.setAttribute('fill','none');b3i.setAttribute('stroke','#FAF1E5');b3i.setAttribute('stroke-width','0.5');
+  b3g.appendChild(b3i);
+  const b3t=document.createElementNS(ns,'text');
+  b3t.setAttribute('x','11');b3t.setAttribute('y','11.5');b3t.setAttribute('text-anchor','middle');
+  b3t.setAttribute('fill','#FAF1E5');b3t.setAttribute('font-size','9');
+  b3t.setAttribute('font-family','Cormorant Garamond,serif');b3t.setAttribute('font-weight','300');
+  b3t.textContent='68';
+  b3g.appendChild(b3t);
+  g3.appendChild(b3g);
+  // Size annotation
+  const st=document.createElementNS(ns,'text');
+  st.setAttribute('x','34');st.setAttribute('y','38');st.setAttribute('text-anchor','middle');
+  st.setAttribute('fill','#6B5F53');st.setAttribute('font-size','7');st.setAttribute('font-family','Montserrat,sans-serif');
+  st.textContent='2.2 × 1.6 cm';
+  g3.appendChild(st);
+  svg.appendChild(g3);
+}
+
+/* ── INTERIOR CANVASES ──────────────────────────────────────────────── */
+function drawInterior(){
+  // Collar tape
+  const {ctx:c1,W:w1,H:h1}=setupCanvas(document.getElementById('c-collar'));
+  fillPattern(c1,0,0,w1,h1,'#E8C98A','#C8823A',Math.floor(w1/8),Math.floor(h1/6),11,0.25,5,0.82);
+  // Tape border
+  c1.strokeStyle='rgba(8,18,26,0.2)';c1.lineWidth=1;
+  c1.strokeRect(0,0,w1,h1);
+
+  // Label carrier
+  const {ctx:c2,W:w2,H:h2}=setupCanvas(document.getElementById('c-label-int'));
+  fillPattern(c2,0,0,w2,h2,'#E8C98A','#C8823A',Math.floor(w2/8),Math.floor(h2/6),22,0.25,5,0.78);
+  // Label box on top
+  const lx=w2/2-50,ly=h2/2-20,lw=100,lh=40;
+  c2.fillStyle='#FAF1E5';c2.fillRect(lx,ly,lw,lh);
+  c2.strokeStyle='#08121A';c2.lineWidth=0.8;c2.strokeRect(lx,ly,lw,lh);
+  c2.fillStyle='#08121A';c2.font=`500 9px Montserrat,sans-serif`;
+  c2.textAlign='center';c2.textBaseline='middle';
+  c2.fillText('PROVENANCE',w2/2,h2/2-4);
+  c2.font=`300 7px Montserrat,sans-serif`;c2.fillStyle='#6B5F53';
+  c2.fillText('Made with care',w2/2,h2/2+8);
+
+  // Placket lining
+  const {ctx:c3,W:w3,H:h3}=setupCanvas(document.getElementById('c-placket-int'));
+  fillPattern(c3,0,0,w3,h3,'#08121A','#FAF1E5',Math.floor(w3/8),Math.floor(h3/6),33,0.28,5,0.58);
+}
+
+window.addEventListener('load',function(){
+  buildPoloFront();
+  buildPoloBack();
+  buildBadgeStudy();
+  drawInterior();
+});
+</script>
+</body>
+</html>

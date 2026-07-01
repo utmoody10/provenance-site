@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Border Pattern Study — 1968</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:   #08121A;
+  --cream:  #FAF1E5;
+  --gold:   #C4973A;
+  --muted:  #6B5F53;
+  --rule:   #D9C9B0;
+  --mid:    #EFE2CC;
+  --amber:  #C8823A;
+  --buff:   #E8C98A;
+}
+body { background: var(--cream); color: var(--navy); font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 300; line-height: 1.7; }
+
+/* HEADER */
+.hdr { padding: 52px 60px 36px; border-bottom: 1px solid var(--navy); display:grid; grid-template-columns:1fr auto; gap:40px; align-items:end; }
+.hdr-label { font-size:8px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.hdr-title { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; line-height:1.05; }
+.hdr-title em { font-style:italic; color:var(--gold); }
+.hdr-sub { font-size:9px; font-weight:400; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-top:12px; }
+.hdr-meta { font-size:8px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); text-align:right; line-height:2.2; border-left:1px solid var(--rule); padding-left:24px; }
+
+/* LAYOUT */
+.wrap { padding: 52px 60px; }
+section { margin-bottom: 72px; }
+.sec-label { font-size:8px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+hr.sec-rule { border:none; border-top:0.5px solid var(--navy); margin-bottom:28px; }
+h2.sec-head { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; margin-bottom:8px; line-height:1.1; }
+p.sec-intro { font-size:11px; font-weight:300; line-height:1.85; color:var(--muted); max-width:640px; margin-bottom:32px; }
+
+/* CANVAS WRAPPERS */
+.canvas-row { display:grid; gap:24px; margin-bottom:28px; }
+.canvas-row.cols-2 { grid-template-columns:1fr 1fr; }
+.canvas-row.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+.canvas-row.cols-4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+.canvas-panel { }
+.canvas-label { font-size:8px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.canvas-note  { font-size:10px; font-weight:300; line-height:1.75; color:var(--navy); margin-top:10px; }
+canvas { display:block; width:100%; border:0.5px solid var(--rule); }
+
+/* ANNOTATION GRID */
+.annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; }
+.ann-item { padding:20px 22px; border:0.5px solid var(--rule); }
+.ann-title { font-size:8px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.ann-text  { font-size:10.5px; font-weight:300; line-height:1.8; color:var(--navy); }
+
+/* CALLOUT */
+.callout { border-left:3px solid var(--gold); padding:18px 22px; background:rgba(196,151,58,0.06); margin-bottom:32px; }
+.callout-label { font-size:8px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.callout-text  { font-size:11px; font-weight:300; line-height:1.85; color:var(--navy); }
+
+/* APPLICATION TABLE */
+.app-table { width:100%; border-collapse:collapse; }
+.app-table th { font-size:8px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); padding:10px 16px; border-bottom:1px solid var(--navy); text-align:left; }
+.app-table td { font-size:10.5px; font-weight:300; padding:14px 16px; border-bottom:0.5px solid var(--rule); color:var(--navy); vertical-align:top; }
+.app-table td:first-child { font-weight:500; color:var(--navy); white-space:nowrap; }
+.app-table td.em { font-style:italic; color:var(--gold); font-size:10px; }
+
+/* FOOTER */
+footer { padding:20px 60px; border-top:1px solid var(--navy); display:flex; justify-content:space-between; font-size:8px; font-weight:300; color:var(--muted); letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div>
+    <div class="hdr-label">Provenance  ·  Design Research Library  ·  Study No. 001-B</div>
+    <h1 class="hdr-title">1968 Border<br><em>Pattern Study</em></h1>
+    <p class="hdr-sub">Focused analysis — the texture mark system and its design applications</p>
+  </div>
+  <div class="hdr-meta">
+    Study No. 001-B<br>
+    Pattern Research<br>
+    Focused Analysis<br>
+    Design Library<br>
+    Not for Production
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- SECTION 1: WHAT IS THE MARK -->
+  <section>
+    <div class="sec-label">01  /  Anatomy of the Mark</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">What is the individual element?</h2>
+    <p class="sec-intro">Before studying the pattern as a whole, it is necessary to isolate and understand the single repeating unit — the mark from which everything else is built.</p>
+
+    <div class="canvas-row cols-2">
+      <div class="canvas-panel">
+        <div class="canvas-label">Isolated Mark — 40× Magnification</div>
+        <canvas id="c-mark" height="280"></canvas>
+        <div class="canvas-note">A single mark from the 1968 border rendered at extreme enlargement. Note: the edges are not perfectly clean. The mark has a slight feathering on two sides — a consequence of ink spread on uncoated card stock. The corners are not sharp. The fill is not uniform.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Mark Geometry — Annotated</div>
+        <canvas id="c-anatomy" height="280"></canvas>
+        <div class="canvas-note">The mark is approximately 3.2:1 width-to-height ratio. Slight angle deviation of 2–6° from horizontal in each occurrence. Ink density is highest at center, fading toward edges. This fading is what gives the pattern its warmth and depth.</div>
+      </div>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="ann-item">
+        <div class="ann-title">Shape</div>
+        <div class="ann-text">A short, fat rectangle with very slightly rounded corners — not a dash, not a brick, not a pill. Something between all three. Its horizontality is deliberate: it reads as a surface weave, not a stack.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">Proportion</div>
+        <div class="ann-text">Width-to-height approximately 3:1. This is the same proportion as a standard running stitch or a flat weave pick — the relationship between warp and weft in a plain weave textile. Not accidental.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">Variation</div>
+        <div class="ann-text">No two marks in the border are identical. Each carries slight angle deviation (2–6°), slight size variation (±10%), and ink density variation. The system is consistent. The instances are not.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE SYSTEM -->
+  <section>
+    <div class="sec-label">02  /  The Pattern System</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">How the marks organize into a field</h2>
+    <p class="sec-intro">The border is not a random scatter. There is a loose underlying grid — but the marks violate it regularly enough that it disappears into texture. This is the key tension in the design.</p>
+
+    <div class="canvas-row cols-3">
+      <div class="canvas-panel">
+        <div class="canvas-label">The Underlying Grid</div>
+        <canvas id="c-grid" height="220"></canvas>
+        <div class="canvas-note">The invisible structure. Marks are placed at roughly equal intervals — but the grid is never enforced precisely.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Grid + Deviation</div>
+        <canvas id="c-grid-dev" height="220"></canvas>
+        <div class="canvas-note">Each mark deviates from its grid position by up to 30% of the cell size. This is the source of the organic quality.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Final Pattern — Grid Hidden</div>
+        <canvas id="c-pattern-final" height="220"></canvas>
+        <div class="canvas-note">The grid disappears entirely. What remains reads as texture, not geometry. The order is felt but not seen.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Core Design Principle</div>
+      <div class="callout-text">The 1968 border achieves something rare: it is simultaneously structured and organic. The grid provides the density and coverage that makes the pattern feel intentional. The deviation provides the warmth and imperfection that makes it feel human. Remove the grid and it becomes noise. Remove the deviation and it becomes mechanical. The balance between the two is what makes this pattern timeless — and why it has never looked dated.</div>
+    </div>
+
+    <div class="canvas-row cols-2">
+      <div class="canvas-panel">
+        <div class="canvas-label">Too Rigid — Pattern becomes mechanical</div>
+        <canvas id="c-rigid" height="180"></canvas>
+        <div class="canvas-note">Zero deviation. The grid is fully visible. This reads as a geometric print — not a texture. It has no warmth.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Too Random — Pattern loses structure</div>
+        <canvas id="c-random" height="180"></canvas>
+        <div class="canvas-note">Maximum deviation. The grid is lost. The result is noise — no visual weight, no sense of surface, no rhythm.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SCALE STUDIES -->
+  <section>
+    <div class="sec-label">03  /  Scale Studies</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">How the pattern reads at different sizes</h2>
+    <p class="sec-intro">Scale is everything. The same pattern at different densities communicates completely differently — from visible texture to fine grain to solid tone. Each scale has a specific application.</p>
+
+    <div class="canvas-row cols-4">
+      <div class="canvas-panel">
+        <div class="canvas-label">Coarse — Large Mark</div>
+        <canvas id="c-scale-1" height="180"></canvas>
+        <div class="canvas-note">Readable as individual marks. Appropriate for large-scale print, jacquard, or debossed packaging.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Medium — Standard</div>
+        <canvas id="c-scale-2" height="180"></canvas>
+        <div class="canvas-note">Original card scale equivalent. Reads as texture at arm's length. Embroidery, woven label, printed interior tape.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Fine — Dense</div>
+        <canvas id="c-scale-3" height="180"></canvas>
+        <div class="canvas-note">Marks begin to merge visually. Approaches the appearance of a solid tone with surface grain. Ideal for fine fabric weave.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Micro — Grain</div>
+        <canvas id="c-scale-4" height="180"></canvas>
+        <div class="canvas-note">Resolves to near-solid with subtle depth. The structure is felt rather than seen. High-end screen print or laser etch.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: COLOR STUDIES -->
+  <section>
+    <div class="sec-label">04  /  Color Studies</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">The pattern in the Provenance color system</h2>
+    <p class="sec-intro">The border pattern is color-neutral — it derives its warmth from color, not from form. Translated into the Provenance palette, the pattern shifts in register while retaining its structural identity.</p>
+
+    <div class="canvas-row cols-3">
+      <div class="canvas-panel">
+        <div class="canvas-label">Original — Amber on Buff</div>
+        <canvas id="c-col-original" height="200"></canvas>
+        <div class="canvas-note">Source material. The amber mark on warm buff ground. High warmth, medium contrast.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Provenance — Navy on Cream</div>
+        <canvas id="c-col-navy" height="200"></canvas>
+        <div class="canvas-note">Primary brand application. Cooler register, higher contrast. More graphic than the original but maintains depth.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Provenance — Gold on Navy</div>
+        <canvas id="c-col-gold" height="200"></canvas>
+        <div class="canvas-note">Accent application. High drama. For interior details, packaging, and premium touch-points only.</div>
+      </div>
+    </div>
+    <div class="canvas-row cols-3">
+      <div class="canvas-panel">
+        <div class="canvas-label">Cream on Navy — Reversed</div>
+        <canvas id="c-col-rev" height="200"></canvas>
+        <div class="canvas-note">The inverse. Cream marks on navy ground. Reads as lighter, more airy. Works for interior lining or contrast details.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Tonal — Navy on Navy-Light</div>
+        <canvas id="c-col-tonal" height="200"></canvas>
+        <div class="canvas-note">Near-tonal. The subtlest application. Structure felt rather than seen. Woven tone-on-tone fabric or debossed leather.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Gold on Cream — Warm Accent</div>
+        <canvas id="c-col-warm" height="200"></canvas>
+        <div class="canvas-note">Closest to the original's warmth translated into the brand palette. Interior label, tissue pattern, packaging print.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: APPLICATION STUDIES -->
+  <section>
+    <div class="sec-label">05  /  Application Studies</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">Where this pattern lives on a garment</h2>
+    <p class="sec-intro">Six specific applications — not garment designs, but locations where the pattern logic would express itself. Each carries a different scale, color, and production method.</p>
+
+    <div class="canvas-row cols-2" style="margin-bottom:48px;">
+      <div class="canvas-panel">
+        <div class="canvas-label">Collar Tape / Neck Binding Interior</div>
+        <canvas id="c-app-tape" height="120"></canvas>
+        <div class="canvas-note">The pattern at medium scale, navy on cream, on a narrow horizontal tape. Seen only when the collar is open or the garment is held inside-out. A quality signal that rewards inspection. Width: 12–16mm. Production: woven jacquard tape or screen-printed twill tape.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Woven Label — Oval Format</div>
+        <canvas id="c-app-label" height="120"></canvas>
+        <div class="canvas-note">The border pattern as the background field of a woven label. The Provenance wordmark or P mark sits on top of the pattern. This references the original card directly — text over the textured field — without reproduction. Production: woven jacquard label.</div>
+      </div>
+    </div>
+
+    <div class="canvas-row cols-2" style="margin-bottom:48px;">
+      <div class="canvas-panel">
+        <div class="canvas-label">Pocket Bag Interior</div>
+        <canvas id="c-app-pocket" height="200"></canvas>
+        <div class="canvas-note">The pattern printed on the pocket bag fabric — visible only when the hand is in the pocket or the garment is fully examined. Gold on navy or gold on cream. A discovery detail. Production: rotary screen print on cotton batiste or voile lining fabric.</div>
+      </div>
+      <div class="canvas-panel">
+        <div class="canvas-label">Placket Lining</div>
+        <canvas id="c-app-placket" height="200"></canvas>
+        <div class="canvas-note">The pattern on the interior face of the button placket — visible when the shirt is unbuttoned. Fine scale, navy on cream. The viewer experiences the pattern at close range, which rewards the fine detail. Production: woven or printed placket tape, self-fabric.</div>
+      </div>
+    </div>
+
+    <table class="app-table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Scale</th>
+          <th>Colorway</th>
+          <th>Production Method</th>
+          <th>Visibility</th>
+          <th>Design Intent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Collar / Neck tape</td>
+          <td>Medium</td>
+          <td>Navy on Cream</td>
+          <td>Woven jacquard tape</td>
+          <td>Revealed when collar open</td>
+          <td class="em">Quality signal. Hidden until discovered.</td>
+        </tr>
+        <tr>
+          <td>Woven label background</td>
+          <td>Fine</td>
+          <td>Cream on Navy</td>
+          <td>Jacquard woven label</td>
+          <td>Interior, always present</td>
+          <td class="em">Brand provenance. Pattern is the ground, mark is figure.</td>
+        </tr>
+        <tr>
+          <td>Pocket bag</td>
+          <td>Medium-coarse</td>
+          <td>Gold on Navy</td>
+          <td>Screen print on lining</td>
+          <td>Revealed by use</td>
+          <td class="em">Discovery detail. Rewards daily interaction.</td>
+        </tr>
+        <tr>
+          <td>Placket lining</td>
+          <td>Fine</td>
+          <td>Navy on Cream</td>
+          <td>Printed or woven tape</td>
+          <td>Revealed when open</td>
+          <td class="em">Intimacy detail. Seen only by the wearer.</td>
+        </tr>
+        <tr>
+          <td>Packaging tissue</td>
+          <td>Medium</td>
+          <td>Gold on Cream</td>
+          <td>Flexo print on tissue</td>
+          <td>Unboxing only</td>
+          <td class="em">Brand environment. First tactile impression.</td>
+        </tr>
+        <tr>
+          <td>Hang tag / card</td>
+          <td>Coarse</td>
+          <td>Amber on Buff</td>
+          <td>Letterpress or offset</td>
+          <td>Pre-purchase</td>
+          <td class="em">Direct pattern reference. Contextualizes the design language.</td>
+        </tr>
+        <tr>
+          <td>Embossed leather patch</td>
+          <td>Fine–micro</td>
+          <td>Tonal (leather-on-leather)</td>
+          <td>Deboss die</td>
+          <td>Exterior — subtle</td>
+          <td class="em">Material translation. Pattern through process, not ink.</td>
+        </tr>
+        <tr>
+          <td>Hat sweatband</td>
+          <td>Medium</td>
+          <td>Navy on Cream</td>
+          <td>Printed or woven sweatband</td>
+          <td>Interior, visible when brim folded</td>
+          <td class="em">Finishing detail. Connects hat to garment system.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 6: THE PATTERN AS BRAND ASSET -->
+  <section>
+    <div class="sec-label">06  /  Pattern as Brand Asset</div>
+    <hr class="sec-rule">
+    <h2 class="sec-head">Why this pattern belongs to Provenance</h2>
+
+    <div class="callout">
+      <div class="callout-label">Central Observation</div>
+      <div class="callout-text">The 1968 border pattern is not a sports motif. It has no association with a team, a player, or a game. It is a pure design solution — a method of creating surface, warmth, and depth using a single repeated mark. As such, it is available to be claimed by a brand that understands what it actually is. Provenance can adopt the principle behind this pattern and make it entirely its own.</div>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="ann-item">
+        <div class="ann-title">It is already warm</div>
+        <div class="ann-text">The pattern's amber-on-buff original colorway sits within the Provenance palette's register. Translated to navy-on-cream or gold-on-cream, it moves directly into the brand system without translation loss. The warmth is structural, not just coloristic.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">It implies craft</div>
+        <div class="ann-text">The pattern's organic variation — its slight imperfection — reads as handmade even when it is not. In an era of perfect digital prints, this quality is rare and valuable. A pattern that appears to have been made by hand, even at industrial scale, signals a different standard of care.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">It is scale-flexible</div>
+        <div class="ann-text">From a micro-weave in a fine fabric to a coarse print on packaging kraft, the pattern system holds its identity across an enormous range of scale. This is unusual. Most patterns become unrecognizable when scaled up or down by a factor of five. This one does not.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">It has no direct origin</div>
+        <div class="ann-text">The pattern is not trademarked. It is a printing technique. The visual vocabulary it created — organic rectangular marks on a warm field — belongs to no one. It is available to be reinterpreted without restriction.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">It connects generations</div>
+        <div class="ann-text">This pattern was experienced by multiple generations — often as a physical object held in the hand. It carries embedded memory. Used in a new context, it activates that memory without explaining itself. Recognition without reference.</div>
+      </div>
+      <div class="ann-item">
+        <div class="ann-title">It disappears into quality</div>
+        <div class="ann-text">At fine scales, in tonal colorways, the pattern is invisible as a pattern — it simply becomes surface quality. A fabric with this pattern woven in looks richer than a plain fabric. The design works hardest when it is least visible.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span>Provenance  ·  Design Research Library  ·  Study No. 001-B  ·  1968 Border Pattern</span>
+  <span>Design research only  ·  No copyrighted material reproduced</span>
+</footer>
+
+<script>
+// ─── UTILITY ─────────────────────────────────────────────────────────────────
+function rnd(min, max) { return min + Math.random() * (max - min); }
+function seededRnd(seed) {
+  let s = seed;
+  return function() { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+}
+
+function drawBorderPattern(canvas, opts) {
+  const {
+    bgColor   = '#E8C98A',
+    markColor = '#C8823A',
+    markAlpha = 0.82,
+    cols      = 18,
+    rows      = 10,
+    deviation = 0.28,   // 0=rigid, 1=random
+    angleRange= 5,      // degrees
+    sizeVar   = 0.12,
+    markW     = 0.62,   // fraction of cell width
+    markH     = 0.28,   // fraction of cell height
+    seed      = 42,
+  } = opts;
+
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth || canvas.width;
+  const H = canvas.height;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Background
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, W, H);
+
+  const r = seededRnd(seed);
+  const cellW = W / cols;
+  const cellH = H / rows;
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const cx = (col + 0.5) * cellW + rndDev(r, deviation * cellW);
+      const cy = (row + 0.5) * cellH + rndDev(r, deviation * cellH);
+      const mw = cellW * markW * (1 + rndDev(r, sizeVar));
+      const mh = cellH * markH * (1 + rndDev(r, sizeVar * 0.5));
+      const angle = rndDev(r, angleRange) * Math.PI / 180;
+      const alpha = markAlpha * (0.8 + r() * 0.3);
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = markColor;
+      roundRect(ctx, -mw/2, -mh/2, mw, mh, mh * 0.3);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+}
+
+function rndDev(r, range) { return (r() - 0.5) * 2 * range; }
+
+function roundRect(ctx, x, y, w, h, r) {
+  if (r > w/2) r = w/2;
+  if (r > h/2) r = h/2;
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// ─── MARK ISOLATION ───────────────────────────────────────────────────────────
+function drawIsolatedMark(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth || 500;
+  const H = 280;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#E8C98A';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw single mark centered, large
+  const mw = W * 0.55, mh = mw / 3.2;
+  const cx = W / 2, cy = H / 2;
+  const r = seededRnd(99);
+
+  // Multiple layers for ink spread feel
+  for (let i = 3; i >= 0; i--) {
+    const spread = i * 2.5;
+    const alpha = i === 0 ? 0.85 : 0.06 - i * 0.01;
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(2 * Math.PI / 180);
+    ctx.globalAlpha = Math.max(0.03, alpha);
+    ctx.fillStyle = '#A85A1A';
+    roundRect(ctx, -(mw/2 + spread), -(mh/2 + spread), mw + spread*2, mh + spread*2, (mh/2 + spread) * 0.4);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(2 * Math.PI / 180);
+  ctx.globalAlpha = 0.88;
+  ctx.fillStyle = '#C8823A';
+  roundRect(ctx, -mw/2, -mh/2, mw, mh, mh * 0.35);
+  ctx.fill();
+
+  // Lighter center
+  const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, mw * 0.4);
+  grad.addColorStop(0, 'rgba(240,160,80,0.3)');
+  grad.addColorStop(1, 'rgba(240,160,80,0)');
+  ctx.fillStyle = grad;
+  roundRect(ctx, -mw/2, -mh/2, mw, mh, mh * 0.35);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawAnatomyMark(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth || 500;
+  const H = 280;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#F5EBD5';
+  ctx.fillRect(0, 0, W, H);
+
+  const mw = W * 0.52, mh = mw / 3.2;
+  const cx = W / 2, cy = H / 2 - 10;
+
+  // Draw mark
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.globalAlpha = 0.85;
+  ctx.fillStyle = '#C8823A';
+  roundRect(ctx, -mw/2, -mh/2, mw, mh, mh * 0.32);
+  ctx.fill();
+  ctx.restore();
+
+  // Annotations
+  ctx.strokeStyle = '#08121A';
+  ctx.fillStyle = '#08121A';
+  ctx.lineWidth = 0.8;
+  ctx.font = `${9 * dpr / dpr}px Montserrat, sans-serif`;
+  ctx.setLineDash([3, 3]);
+
+  const ax = cx - mw/2, ay = cy - mh/2;
+  const bx = cx + mw/2, by = cy + mh/2;
+
+  // Width arrow
+  ctx.beginPath(); ctx.moveTo(ax, cy + mh/2 + 28); ctx.lineTo(bx, cy + mh/2 + 28); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(ax, cy + mh/2 + 22); ctx.lineTo(ax, cy + mh/2 + 34); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx, cy + mh/2 + 22); ctx.lineTo(bx, cy + mh/2 + 34); ctx.stroke();
+  ctx.fillStyle = '#08121A';
+  ctx.font = `300 9px Montserrat, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText('width  ≈  3.2×', cx, cy + mh/2 + 44);
+
+  // Height arrow
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(bx + 28, ay); ctx.lineTo(bx + 28, by); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(bx + 22, ay); ctx.lineTo(bx + 34, ay); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx + 22, by); ctx.lineTo(bx + 34, by); ctx.stroke();
+  ctx.save(); ctx.translate(bx + 44, cy); ctx.rotate(Math.PI/2);
+  ctx.fillText('height  ×1', 0, 0);
+  ctx.restore();
+
+  // Angle note
+  ctx.fillStyle = '#C4973A';
+  ctx.textAlign = 'left';
+  ctx.fillText('2–6° deviation per mark', ax, ay - 14);
+
+  // Feather edge note
+  ctx.fillStyle = '#6B5F53';
+  ctx.textAlign = 'right';
+  ctx.fillText('ink feather at edge', bx, cy - mh/2 - 14);
+}
+
+// ─── DRAW ALL CANVASES ────────────────────────────────────────────────────────
+window.addEventListener('load', function() {
+
+  drawIsolatedMark('c-mark');
+  drawAnatomyMark('c-anatomy');
+
+  // Grid studies
+  const c = document.getElementById('c-grid');
+  const dpr = window.devicePixelRatio||1;
+  const W = c.offsetWidth||300, H = 220;
+  c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
+  const ctx=c.getContext('2d'); ctx.scale(dpr,dpr);
+  ctx.fillStyle='#E8C98A'; ctx.fillRect(0,0,W,H);
+  const cols=14,rows=8,cw=W/cols,ch=H/rows;
+  for(let row=0;row<rows;row++) for(let col=0;col<cols;col++) {
+    const cx=(col+0.5)*cw, cy=(row+0.5)*ch;
+    ctx.strokeStyle='rgba(180,80,20,0.25)'; ctx.lineWidth=0.5; ctx.setLineDash([2,2]);
+    ctx.strokeRect(col*cw,row*ch,cw,ch);
+    ctx.setLineDash([]);
+    ctx.globalAlpha=0.7; ctx.fillStyle='#C8823A';
+    roundRect(ctx,cx-cw*0.29,cy-ch*0.13,cw*0.58,ch*0.26,ch*0.1);
+    ctx.fill(); ctx.globalAlpha=1;
+  }
+
+  // Grid + deviation
+  drawBorderPattern(document.getElementById('c-grid-dev'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:14,rows:8,deviation:0.28,angleRange:5,seed:17,markW:0.6,markH:0.27});
+
+  // Final
+  drawBorderPattern(document.getElementById('c-pattern-final'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:14,rows:8,deviation:0.28,angleRange:5,seed:17,markW:0.6,markH:0.27});
+
+  // Rigid vs random
+  drawBorderPattern(document.getElementById('c-rigid'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:16,rows:7,deviation:0,angleRange:0,seed:5,markW:0.62,markH:0.27});
+  drawBorderPattern(document.getElementById('c-random'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:16,rows:7,deviation:0.85,angleRange:20,seed:5,markW:0.62,markH:0.27,sizeVar:0.5});
+
+  // Scale studies
+  drawBorderPattern(document.getElementById('c-scale-1'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:8,rows:6,deviation:0.28,angleRange:5,seed:42,markW:0.64,markH:0.28});
+  drawBorderPattern(document.getElementById('c-scale-2'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:16,rows:10,deviation:0.28,angleRange:5,seed:42,markW:0.62,markH:0.28});
+  drawBorderPattern(document.getElementById('c-scale-3'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:28,rows:16,deviation:0.28,angleRange:5,seed:42,markW:0.62,markH:0.28,markAlpha:0.75});
+  drawBorderPattern(document.getElementById('c-scale-4'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:48,rows:28,deviation:0.28,angleRange:5,seed:42,markW:0.64,markH:0.29,markAlpha:0.65});
+
+  // Color studies
+  drawBorderPattern(document.getElementById('c-col-original'),
+    {bgColor:'#E8C98A',markColor:'#C8823A',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28});
+  drawBorderPattern(document.getElementById('c-col-navy'),
+    {bgColor:'#FAF1E5',markColor:'#08121A',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28,markAlpha:0.75});
+  drawBorderPattern(document.getElementById('c-col-gold'),
+    {bgColor:'#08121A',markColor:'#C4973A',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28,markAlpha:0.82});
+  drawBorderPattern(document.getElementById('c-col-rev'),
+    {bgColor:'#08121A',markColor:'#FAF1E5',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28,markAlpha:0.65});
+  drawBorderPattern(document.getElementById('c-col-tonal'),
+    {bgColor:'#0F1E2C',markColor:'#1A3348',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28,markAlpha:0.9});
+  drawBorderPattern(document.getElementById('c-col-warm'),
+    {bgColor:'#FAF1E5',markColor:'#C4973A',cols:16,rows:10,deviation:0.28,angleRange:5,seed:7,markW:0.62,markH:0.28,markAlpha:0.78});
+
+  // Application: collar tape
+  drawBorderPattern(document.getElementById('c-app-tape'),
+    {bgColor:'#FAF1E5',markColor:'#08121A',cols:32,rows:4,deviation:0.25,angleRange:4,seed:11,markW:0.62,markH:0.3,markAlpha:0.7});
+
+  // Application: oval label
+  (function() {
+    const canvas = document.getElementById('c-app-label');
+    const dpr = window.devicePixelRatio||1;
+    const W = canvas.offsetWidth||300, H=120;
+    canvas.width=W*dpr; canvas.height=H*dpr; canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr);
+    ctx.fillStyle='#FAF1E5'; ctx.fillRect(0,0,W,H);
+    // Draw pattern into oval clip
+    const lw=W*0.55,lh=H*0.72,lx=W/2,ly=H/2;
+    ctx.save();
+    ctx.beginPath(); ctx.ellipse(lx,ly,lw/2,lh/2,0,0,Math.PI*2); ctx.clip();
+    ctx.fillStyle='#08121A'; ctx.fillRect(0,0,W,H);
+    const r=seededRnd(55),cols=18,rows=6,cw=W/cols,ch=H/rows;
+    for(let row=0;row<rows;row++) for(let col=0;col<cols;col++) {
+      const cx=(col+0.5)*cw+(r()-0.5)*cw*0.5;
+      const cy=(row+0.5)*ch+(r()-0.5)*ch*0.5;
+      const mw=cw*0.6,mh=ch*0.28;
+      const angle=(r()-0.5)*0.1;
+      ctx.save(); ctx.translate(cx,cy); ctx.rotate(angle);
+      ctx.globalAlpha=0.6; ctx.fillStyle='#1A3348';
+      roundRect(ctx,-mw/2,-mh/2,mw,mh,mh*0.35); ctx.fill();
+      ctx.restore();
+    }
+    ctx.restore();
+    // Oval border
+    ctx.strokeStyle='#08121A'; ctx.lineWidth=2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.ellipse(lx,ly,lw/2,lh/2,0,0,Math.PI*2); ctx.stroke();
+    // Text
+    ctx.fillStyle='#FAF1E5'; ctx.font=`600 ${H*0.2}px Montserrat,sans-serif`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.letterSpacing='0.1em';
+    ctx.fillText('PROVENANCE',lx,ly);
+  })();
+
+  // Pocket bag
+  drawBorderPattern(document.getElementById('c-app-pocket'),
+    {bgColor:'#08121A',markColor:'#C4973A',cols:16,rows:12,deviation:0.28,angleRange:5,seed:33,markW:0.62,markH:0.28,markAlpha:0.6});
+
+  // Placket
+  drawBorderPattern(document.getElementById('c-app-placket'),
+    {bgColor:'#FAF1E5',markColor:'#08121A',cols:10,rows:20,deviation:0.28,angleRange:5,seed:22,markW:0.62,markH:0.28,markAlpha:0.68});
+
+});
+</script>
+</body>
+</html>

@@ -848,6 +848,34 @@
     .reveal-delay-3 { transition-delay: 0.36s; }
     .reveal-delay-4 { transition-delay: 0.48s; }
 
+    /* ─── Wide screen (1440px+) ─────────────────────────────── */
+    @media (min-width: 1440px) {
+      nav { padding: 1.75rem 5rem; }
+      .nav-mark { height: 38px; }
+
+      .hero-wordmark { width: min(680px, 46vw); margin-bottom: 4rem; }
+      .hero-headline { font-size: clamp(3rem, 3.2vw, 4.5rem); }
+      .hero-body { font-size: 1.1rem; max-width: 540px; }
+
+      section { padding: var(--gap) clamp(5rem, 9vw, 12rem); }
+
+      .story-inner,
+      .craft-inner,
+      .card-inner,
+      .binder-inner,
+      .collection-inner { max-width: 1400px; }
+
+      .footer-inner,
+      .footer-social { max-width: 1400px; }
+
+      .closing-inner { max-width: 720px; }
+      .collection-cap { max-width: 960px; }
+
+      .section-headline { font-size: clamp(2.5rem, 3vw, 4rem); }
+      .story-inner { gap: 7rem; }
+      .craft-inner { gap: 8rem; }
+    }
+
     /* ─── Keyframes ──────────────────────────────────────────── */
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
